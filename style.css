@@ -1,0 +1,48 @@
+* {
+  list-style-type: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  position: relative;
+}
+
+header img {
+  padding: 30px 0 0 15px;
+  margin-bottom: 15px;
+  height: 30px;
+}
+
+header nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 20px 0 20px;
+}
+
+header nav ul li {
+  text-transform: capitalize;
+  color: #901C1C;
+  border: 1px solid #525252;
+  border-radius: 16px;
+  font-size: 12px;
+  padding: 5px;
+  margin: 0 5px 5px 0;
+}
+
+header h1 {
+  position: absolute;
+  top: 40px;
+  right: 15px;
+  font-size: 14px;
+  color: #901C1C;
+  font-weight: normal;
+}
+/*# sourceMappingURL=style.css.map */
