@@ -5,44 +5,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FishEye</title>
+    <!--style css-->
     <link rel="stylesheet" href="style.css" />
-
+    <!--Bibliothéque pour les polices-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!--HEADER-->
     <header role="banner">
-        <a href="index.html"><img src="Sample Photos/logo/logo.png" alt="FishEye Home Page"></a>
+        <a href="index.html"><img src="Images/logo/logo.png" alt="FishEye Home Page"></a>
         <nav role="navigation">
-            <ul>
+            <ul class="tags-container">
                 <a href='#'>
-                    <li>#portrait</li>
+                    <li class="tags">#portrait</li>
                 </a>
                 <a href='#'>
-                    <li>#art</li>
+                    <li class="tags">#art</li>
                 </a>
                 <a href='#'>
-                    <li>#fashion</li>
+                    <li class="tags">#fashion</li>
                 </a>
                 <a href='#'>
-                    <li>#architecture</li>
+                    <li class="tags">#architecture</li>
                 </a>
                 <a href='#'>
-                    <li>#travel</li>
+                    <li class="tags">#travel</li>
                 </a>
                 <a href='#'>
-                    <li>#sport</li>
+                    <li class="tags">#sport</li>
                 </a>
                 <a href='#'>
-                    <li>#animals</li>
+                    <li class="tags">#animals</li>
                 </a>
                 <a href='#'>
-                    <li>#events</li>
+                    <li class="tags">#events</li>
                 </a>
             </ul>
         </nav>
-        <h1>Nos Photographes</h1>
+
     </header>
+
+    <!--CONTENT-->
+    <main>
+        <h1>Nos Photographes</h1>
+        <article id="container-photographers-list">
+
+        </article>
+    </main>
+    <script src="photographers.js"></script>
 </body>
 
 </html>
