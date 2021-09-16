@@ -2,7 +2,7 @@
 //variable pour le contenu de la page d'accueil
 const $containerPhotographersList = document.querySelector("#container-photographers-list");
 //variable pour l'header de la page de profil des photographers
-const $containerPersonalInformations = document.querySelector("#container-personal-informations");
+// const $containerPersonalInformations = document.querySelector("#container-personal-informations");
 
 //requete
 let requestURL = '/Data/data.json';
@@ -33,7 +33,7 @@ request.addEventListener("load", () => {
             $containerPhotographersList.innerHTML += `
             <section class="photographers-list">
             <div class="photographers-pictures">
-            <a href="/profil.html?id=${id}">
+            <a href="/profil.html?${id}">
             <img src="Images/PhotographersPictures/${portrait}" alt="">
             </a>
             </div>
@@ -47,22 +47,9 @@ request.addEventListener("load", () => {
             ${tagsHTML}
             </section>
             `
+
         });
 
-        const idURL = window.location.search;
-        console.log(idURL);
-
-
-        //PHOTOGRAPHERS-PROFIL.HTML
-
-        // if (id == id) {
-        //     $containerPersonalInformations = `
-        //     <h3>${name}</h3>
-        //     <p class="city-country">${city} , ${country}</p>
-        //     <p>${tagline}</p>
-
-        //     `
-        // }
 
     } else { //si non, afficher le message d'erreur 
         console.log(request.status);
@@ -74,8 +61,4 @@ request.addEventListener("error", (e) => { //afficher l'erreur
 
 
 
-let idURL = window.location.search;
-console.log(idURL);
-
-// let data = request.response;
-// let photographesdata = JSON.parse(data);
+// const photographerData = data.photographers.find((id) => id === onlyId);
