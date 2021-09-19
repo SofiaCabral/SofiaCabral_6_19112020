@@ -4,17 +4,19 @@ const $containerPhotographersList = document.querySelector("#container-photograp
 //variable pour l'header de la page de profil des photographers
 // const $containerPersonalInformations = document.querySelector("#container-personal-informations");
 
+
+
 //requete
-let requestURL = '/Data/data.json';
+let requestURL = "/data.json";
 let request = new XMLHttpRequest();
 request.open("GET", requestURL);
 request.send();
 
 //au chargerment de la page
 request.addEventListener("load", () => {
-
+    data = JSON.parse(request.response); //transgormer json en js en stocker en data
     if (request.status == 200 || request.status == 201) { //si tout se passe bien
-        data = JSON.parse(request.response); //transgormer json en js en stocker en data
+
 
         //boucle qui prends les valeurs qui sont sur le json
         data.photographers.forEach(({ name, city, country, tagline, price, portrait, id, tags }) => {
@@ -62,3 +64,12 @@ request.addEventListener("error", (e) => { //afficher l'erreur
 
 
 // const photographerData = data.photographers.find((id) => id === onlyId);
+
+//Récupearation de l'id dans l'url
+const idURL = window.location.search;
+//enlever le ? et garder que l'id
+const onlyId = idURL.slice(1);
+console.log(onlyId);
+
+const photographerData = data.photographers.find(element => data.photographers.id === onlyId);
+console.log(photographerData);
