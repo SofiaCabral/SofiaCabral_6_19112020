@@ -32,35 +32,38 @@ body {
   font-weight: 500;
 }
 
-header {
+#main-header {
   position: relative;
 }
 
-header img {
+#main-header img {
   padding-top: 30px;
   margin-bottom: 15px;
   height: 40px;
 }
 
-main h1 {
+h1 {
+  font-weight: normal;
+}
+
+#main-index h1 {
   position: absolute;
   top: 43px;
   right: 15px;
   font-size: 14px;
   color: #901C1C;
-  font-weight: normal;
 }
 
-main #container-photographers-list {
+#main-index #container-photographers-list {
   margin-top: 20px;
 }
 
-main #container-photographers-list .photographers-list {
+#main-index #container-photographers-list .photographers-list {
   text-align: center;
   margin-bottom: 20px;
 }
 
-main #container-photographers-list .photographers-list img {
+#main-index #container-photographers-list .photographers-list img {
   width: 100px;
   height: 100px;
   -o-object-fit: cover;
@@ -70,15 +73,68 @@ main #container-photographers-list .photographers-list img {
   border-radius: 50%;
 }
 
-main #container-photographers-list .photographers-list .photographers-description h2 {
+#main-index #container-photographers-list .photographers-list .photographers-description h2 {
   color: #D3573C;
 }
 
-main #container-photographers-list .photographers-list .photographers-description .city-country {
+#main-index #container-photographers-list .photographers-list .photographers-description .city-country {
   color: #901C1C;
 }
 
-main #container-photographers-list .photographers-list .photographers-description .price {
+#main-index #container-photographers-list .photographers-list .photographers-description .price {
   color: #C4C4C4;
+}
+
+#page-photographer {
+  margin: auto;
+  width: 90%;
+}
+
+#page-photographer #container-personal-informations {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#page-photographer #container-personal-informations h1 {
+  font-size: 38px;
+  color: #D3573C;
+}
+
+#page-photographer #container-personal-informations #city-country-photographer {
+  font-size: 13px;
+  color: #901C1C;
+}
+
+#page-photographer #container-personal-informations #tagline-photographer {
+  font-size: 13px;
+  color: #525252;
+}
+
+#page-photographer #container-personal-informations #tags-container-photographers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#page-photographer #container-personal-informations #all-tags {
+  text-transform: capitalize;
+  color: #901C1C;
+  border: 0.5px solid #C4C4C4;
+  border-radius: 11px;
+  font-size: 12px;
+  padding: 3px;
+  margin: 0 5px 5px 0;
+  font-weight: 500;
+}
+
+#page-photographer #container-personal-informations #container-picture-profil img {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  border-radius: 50%;
 }
 /*# sourceMappingURL=style.css.map */

@@ -14,6 +14,7 @@ $first-primary-color: #901C1C;
 $second-primary-color: #D3573C;
 $first-secondary-color: #DB8876;
 $second-secondary-color: #C4C4C4;
+$other-second-secondary: #525252;
 .tags-container {
     display: flex;
     flex-wrap: wrap;
@@ -31,26 +32,27 @@ $second-secondary-color: #C4C4C4;
 }
 
 //HEADER
-header {
+#main-header {
     position: relative;
     img {
         padding-top: 30px;
         margin-bottom: 15px;
         height: 40px;
     }
-    // nav {
-    // }
 }
 
-//CONTENT
-main {
+h1 {
+    font-weight: normal;
+}
+
+//INDEX CONTENT
+#main-index {
     h1 {
         position: absolute;
         top: 43px;
         right: 15px;
         font-size: 14px;
         color: $first-primary-color;
-        font-weight: normal;
     }
     #container-photographers-list {
         margin-top: 20px;
@@ -74,6 +76,49 @@ main {
                 .price {
                     color: $second-secondary-color;
                 }
+            }
+        }
+    }
+}
+
+//Page de Photgraphers 
+#page-photographer {
+    margin: auto;
+    width: 90%;
+    #container-personal-informations {
+        display: flex;
+        h1 {
+            font-size: 38px;
+            color: $second-primary-color;
+        }
+        #city-country-photographer {
+            font-size: 13px;
+            color: $first-primary-color;
+        }
+        #tagline-photographer {
+            font-size: 13px;
+            color: $other-second-secondary;
+        }
+        #tags-container-photographers {
+            display: flex;
+        }
+        #all-tags {
+            text-transform: capitalize;
+            color: $first-primary-color;
+            border: 0.5px solid $second-secondary-color;
+            border-radius: 11px;
+            font-size: 12px;
+            padding: 3px;
+            margin: 0 5px 5px 0;
+            font-weight: 500;
+        }
+        #container-picture-profil {
+            img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                object-position: center;
+                border-radius: 50%;
             }
         }
     }

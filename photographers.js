@@ -22,14 +22,14 @@ request.addEventListener("load", () => {
         data.photographers.forEach(({ name, city, country, tagline, price, portrait, id, tags }) => {
             let tagsHTML = `<ul class="tags-container">`;
             //Code pour la page INDEX.HTML
-            //affichage des tags
+            //affichage des all-tags
             tags.forEach(tag => {
                 tagsHTML += `<li class="tags">#${tag}</li>`
             });
             //peut etre pour pas écraser le resultat de l'autre variable
             //ul + </ul>
             tagsHTML += `</ul>`;
-            // tagsHTML =  tagsHTML + "</ul>";
+            // all-tagsHTML =  all-tagsHTML + "</ul>";
             //innertext plus clés
             //transmissions de donnees par url
             $containerPhotographersList.innerHTML += `
@@ -64,12 +64,3 @@ request.addEventListener("error", (e) => { //afficher l'erreur
 
 
 // const photographerData = data.photographers.find((id) => id === onlyId);
-
-//Récupearation de l'id dans l'url
-const idURL = window.location.search;
-//enlever le ? et garder que l'id
-const onlyId = idURL.slice(1);
-console.log(onlyId);
-
-const photographerData = data.photographers.find(element => data.photographers.id === onlyId);
-console.log(photographerData);
