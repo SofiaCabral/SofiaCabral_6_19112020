@@ -23,13 +23,14 @@ body {
 
 .tags-container .tags {
   text-transform: capitalize;
+  background-color: white;
   color: #901C1C;
   border: 0.5px solid #C4C4C4;
   border-radius: 11px;
   font-size: 12px;
-  padding: 3px;
+  padding: 4px;
   margin: 0 5px 5px 0;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 #main-header {
@@ -88,12 +89,14 @@ h1 {
 #page-photographer {
   margin: auto;
   width: 90%;
+  position: relative;
 }
 
 #page-photographer #container-personal-informations {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 40px;
 }
 
 #page-photographer #container-personal-informations h1 {
@@ -104,11 +107,13 @@ h1 {
 #page-photographer #container-personal-informations #city-country-photographer {
   font-size: 13px;
   color: #901C1C;
+  padding-bottom: 5px;
 }
 
 #page-photographer #container-personal-informations #tagline-photographer {
   font-size: 13px;
   color: #525252;
+  padding-bottom: 5px;
 }
 
 #page-photographer #container-personal-informations #tags-container-photographers {
@@ -125,7 +130,24 @@ h1 {
   font-size: 12px;
   padding: 3px;
   margin: 0 5px 5px 0;
+}
+
+#page-photographer #container-personal-informations #container-button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  position: fixed;
+}
+
+#page-photographer #container-personal-informations #container-button button {
+  background-color: #901C1C;
+  padding: 10px 15px 10px 15px;
+  color: white;
+  border-radius: 5px;
   font-weight: 500;
+  border: none;
 }
 
 #page-photographer #container-personal-informations #container-picture-profil img {
@@ -136,5 +158,41 @@ h1 {
   -o-object-position: center;
      object-position: center;
   border-radius: 50%;
+}
+
+#page-photographer #container-medias .medias {
+  margin-bottom: 10px;
+}
+
+#page-photographer #container-medias .medias .image-medias img {
+  width: 335px;
+  height: 190px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+#page-photographer #container-medias .medias .description-medias {
+  color: #901C1C;
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#page-photographer #container-medias .medias .description-medias .container-likes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#page-photographer #container-medias .medias .description-medias .container-likes p {
+  padding-right: 5px;
 }
 /*# sourceMappingURL=style.css.map */

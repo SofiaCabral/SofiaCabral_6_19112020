@@ -2,11 +2,11 @@
 
 
 const $containerPersonalInformations = document.querySelector("#container-personal-informations");
-
+const $containerMedias = document.querySelector("#container-medias");
 
 
 //requete$containerPersonalInformations
-let requestURL = "/data.json";
+let requestURL = "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Front-End+V2/P5+Javascript+%26+Accessibility/FishEyeData.json";
 let request = new XMLHttpRequest();
 request.open("GET", requestURL);
 request.send();
@@ -25,6 +25,7 @@ request.addEventListener("load", () => {
         // console.log(onlyId);
 
         //Selectionner photographe en fonction de l'id du url
+        //find permet de recuperer le premier element
         const photographerData = data.photographers.find((dataOnePhotographer) => dataOnePhotographer.id == onlyId);
 
         let tagsHTML = `<ul id="tags-container-photographers">`;
@@ -45,15 +46,59 @@ request.addEventListener("load", () => {
         <p id="tagline-photographer">${photographerData.tagline}</p>
         ${tagsHTML}
     </div>
+
+    <div id="container-button">
+    <button>Contactez-Moi</button>
+    </div>
+
  <div id="container-picture-profil">
     <img src="Images/PhotographersPictures/${photographerData.portrait}" alt="">
    </div>     
         `
-            //Affichage des medias
 
-        //Selectionner photographe en fonction de l'id du url
-        // const photographerDataMedia = data.media.find((dataOnePhotographerMedia) => dataOnePhotographerMedia.id == onlyId);
-        // console.log(photographerDataMedia);
+
+        //trouver les id du photographer sur les media du json qui correspond a l'id recupere dans l'url
+        //filter permet de recuperer plusieurs elemets 
+        const photographerMedia = data.media.filter((dataOnePhotographerMedia) => dataOnePhotographerMedia.photographerId == onlyId);
+
+
+        //Ajout des medias 
+        photographerMedia.forEach(e => {
+
+            let imagePath;
+            //s'il c'est une image
+            if (e.image) {
+                //Garder que le premier prenom/premiere chaine de caractere, avant l'espace
+                const folderPhotographerName = photographerData.name.split(" ")[0];
+                //liens vers l'image
+                imagePath = `images/${folderPhotographerName}/${e.image}`;
+            } else {
+                //si ce n'est pas une image, afficher le logo
+                imagePath = `images/logo/logo.png`;
+            }
+
+            // affichage des medias
+            $containerMedias.innerHTML += `
+    
+
+          
+            <section class="medias">
+                <div class="image-medias">
+                    <img src="${imagePath}" alt="">
+                </div>
+                <div class="description-medias">
+                    <p>${e.title}</p>
+                    <div class="container-likes">
+                        <p>${e.likes}</p>
+                        <i class="fas fa-heart"></i>
+                    </div>
+
+                </div>
+            </section>
+        `
+
+        });
+
 
 
 
