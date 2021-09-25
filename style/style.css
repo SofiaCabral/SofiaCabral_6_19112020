@@ -144,7 +144,7 @@ h1 {
   position: fixed;
 }
 
-#page-photographer #container-personal-informations #container-button button {
+#page-photographer #container-personal-informations #container-button #button-contact {
   background-color: #901C1C;
   padding: 10px 15px 10px 15px;
   color: white;
@@ -215,6 +215,80 @@ h1 {
 
 #aside {
   display: none;
+}
+
+#modal-container {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #DB8876;
+}
+
+#modal-container #modal-content {
+  padding-top: 20px;
+}
+
+#modal-container #modal-content #close-modal-button {
+  background-color: #DB8876;
+  border: none;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+#modal-container #modal-content #form-container {
+  position: relative;
+  margin: auto;
+  width: 85%;
+}
+
+#modal-container #modal-content #form-container h1 {
+  font-size: 36px;
+}
+
+#modal-container #modal-content #form-container .formData-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#modal-container #modal-content #form-container .formData-container label {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+#modal-container #modal-content #form-container .formData-container input {
+  border-radius: 5px;
+  border: none;
+  height: 50px;
+  width: 100%;
+  outline: inherit;
+  font-size: 16px;
+}
+
+#modal-container #modal-content #form-container .formData-container textarea {
+  height: 80px;
+  width: 100%;
+  border-radius: 5px;
+  outline: inherit;
+}
+
+#modal-container #modal-content #form-container #button-submit-container {
+  text-align: center;
+}
+
+#modal-container #modal-content #form-container #button-submit-container #button-submit {
+  background-color: #901C1C;
+  padding: 10px 40px 10px 40px;
+  color: white;
+  border-radius: 5px;
+  font-weight: 500;
+  border: none;
 }
 
 @media all and (min-width: 1161px) {

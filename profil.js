@@ -49,13 +49,14 @@ request.addEventListener("load", () => {
     </div>
 
     <div id="container-button">
-    <button>Contactez-Moi</button>
+    <button id="button-contact">Contactez-Moi</button>
     </div>
 
  <div id="container-picture-profil">
     <img src="Images/PhotographersPictures/${photographerData.portrait}" alt="">
    </div>     
         `
+
 
 
         //trouver les id du photographer sur les media du json qui correspond a l'id recupere dans l'url
@@ -84,9 +85,11 @@ request.addEventListener("load", () => {
 
           
             <section class="medias">
+            <div id="container-image-medias>
                 <div class="image-medias">
                     <img src="${imagePath}" alt="">
                 </div>
+            </div>
                 <div class="description-medias">
                     <p>${media.title}</p>
                     <div class="container-likes">
@@ -137,6 +140,69 @@ request.addEventListener("load", () => {
         </div>
 
         `
+
+
+        //BOUTON CONTACT
+        //button contactez moi
+        const buttonContact = document.querySelector("#button-contact");
+        //toute la modal
+        const modalContainer = document.querySelector("#modal-container");
+        //button pour fermer
+        const closeModalButton = document.querySelector("#close-modal-button");
+
+        //Evenement sur le bouton contactez moi
+        buttonContact.addEventListener("click", openModal);
+
+        //ouvrir la modal
+        function openModal() {
+            modalContainer.style.display = "block";
+        }
+
+        //Evenement sur le bouton de fermer
+        closeModalButton.addEventListener("click", closeModal);
+        //fermer la modale
+        function closeModal() {
+            modalContainer.style.display = "none";
+        }
+
+        //afficher le resultat sur les logs
+        //button sbmit
+        const buttonSubmit = document.querySelector("#button-submit");
+        const firstName = document.querySelector("#first-name");
+        const last = document.querySelector("#last");
+        const email = document.querySelector("#email");
+        //evenement sur le bouton submit
+        buttonSubmit.addEventListener('click', validationForm);
+
+
+
+        //fonction de validation de formulaire
+        function validationForm(e) {
+            e.preventDefault();
+            //Affichage des values sur la console
+            console.log(firstName.value);
+            console.log(last.value);
+            console.log(email.value);
+
+
+        }
+        // //Au clic sur le bouton du coeur
+        // const buttonHeart = document.querySelector("#button-heart");
+        // console.log(buttonHeart);
+
+
+        // buttonHeart.addEventListener("click", () => {
+        //     //on parcourt le tableau avec tous les likes 
+        //     likesTable.forEach((like) => {
+        //         //on ajoute un
+
+
+        //     });
+
+        //     console.log(likesTable);
+
+
+        // });
 
 
 

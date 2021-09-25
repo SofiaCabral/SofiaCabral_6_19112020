@@ -1,12 +1,3 @@
-//DOM ELEMENTS
-//variable pour le contenu de la page d'accueil
-
-
-
-
-//requete
-
-
 //au chargerment de la page
 request.addEventListener("load", () => {
     data = JSON.parse(request.response); //transgormer json en js en stocker en data
@@ -65,7 +56,7 @@ request.addEventListener("load", () => {
 
 
                 //ça renvoie tous les photgraphes grace à filter qui ont la tag(includes) qu'on a cliqué
-                const filteredPhotographers = data.photographers.filter(photographer => {
+                const filteredPhotographers = data.photographers.filter((photographer) => {
 
 
                     return photographer.tags.includes(tag);
@@ -127,7 +118,3 @@ request.addEventListener("load", () => {
 request.addEventListener("error", (e) => { //afficher l'erreur
     console.log(e);
 })
-
-
-
-// const photographerData = data.photographers.find((id) => id === onlyId);

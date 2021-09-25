@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!--Bibliotheque icone font awesome-->
     <script src="https://kit.fontawesome.com/45e38e596f.js" crossorigin="anonymous"></script>
 </head>
@@ -46,12 +46,49 @@
     <aside id="aside">
 
     </aside>
+    <!--Formulaire-->
 
+    <div id="modal-container">
+        <div id="modal-content">
+            <button id="close-modal-button"><i class="fas fa-times"></i></button>
+            <div id="form-container">
+                <form name="contact" action="index.html" method="get">
+                    <!-- <div id="container-title"> -->
+                    <h1>Contactez-moi</h1>
+
+
+                    <!-- </div> -->
+                    <div class="formData-container">
+                        <label for="first-name">Prénom</label><br />
+                        <input class="input-text-style" type="text" id="first-name" name="firstName" /><br />
+
+                    </div>
+                    <div class="formData-container">
+                        <label for="last">Nom</label><br />
+                        <input class="input-text-style" type="text" id="last" name="last" /><br />
+
+                    </div>
+                    <div class="formData-container">
+                        <label for="email">E-mail</label><br />
+                        <input class="input-text-style" type="email" id="email" name="email" /><br />
+
+                    </div>
+                    <div class="formData-container">
+                        <label for="message">Votre message</label><br />
+                        <textarea class="input-text-style" name="message" id="message"></textarea>
+                    </div>
+                    <div id="button-submit-container">
+                        <input id="button-submit" type="submit" value="Envoyer" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!--Fichier JS-->
 
-    <!-- 
-    <script src="photographers.js"></script> -->
+
     <script src="profil.js"></script>
+    <script src="modal.js"></script>
 
 </body>
 

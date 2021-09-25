@@ -29,6 +29,7 @@ request.addEventListener("load", () => {
 
             //affichage des all-tags
             tags.forEach(tag => {
+
                 tagsHTML += `<li class="tags">#${tag}</li>`
             });
             //peut etre pour pas écraser le resultat de l'autre variable
