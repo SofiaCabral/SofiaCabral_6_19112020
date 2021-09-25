@@ -16,6 +16,20 @@
     $second-secondary-color: #C4C4C4;
     $other-second-secondary: #525252;
     $background-color-tags-buttons: white;
+    //HEADER
+    #main-header {
+        position: relative;
+        #logo {
+            padding-top: 30px;
+            margin-bottom: 15px;
+            height: 40px;
+        }
+        .tags-container-index {
+            // margin: auto;
+            // width: 70%;
+        }
+    }
+    
     .tags-container {
         display: flex;
         flex-wrap: wrap;
@@ -30,20 +44,6 @@
             padding: 4px;
             margin: 0 5px 5px 0;
             font-weight: 700;
-        }
-    }
-    
-    //HEADER
-    #main-header {
-        position: relative;
-        img {
-            padding-top: 30px;
-            margin-bottom: 15px;
-            height: 40px;
-        }
-        .tags-container-index {
-            margin: auto;
-            width: 70%;
         }
     }
     
@@ -98,7 +98,7 @@
             // position: relative;
             margin-bottom: 40px;
             h1 {
-                font-size: 38px;
+                font-size: 16px;
                 color: $second-primary-color;
             }
             #city-country-photographer {
@@ -113,16 +113,15 @@
             }
             #tags-container-photographers {
                 display: flex;
-            }
-            #all-tags {
-                text-transform: capitalize;
-                color: $first-primary-color;
-                border: 0.5px solid $second-secondary-color;
-                border-radius: 11px;
-                font-size: 12px;
-                padding: 3px;
-                margin: 0 5px 5px 0;
-                // font-weight: 700;
+                #all-tags {
+                    text-transform: capitalize;
+                    color: $first-primary-color;
+                    border: 0.5px solid $second-secondary-color;
+                    border-radius: 11px;
+                    font-size: 12px;
+                    padding: 3px;
+                    margin: 0 5px 5px 0;
+                }
             }
             #container-button {
                 position: absolute;
@@ -149,6 +148,9 @@
                 }
             }
         }
+        #order-medias-container {
+            display: none;
+        }
         #container-medias {
             .medias {
                 margin-bottom: 10px;
@@ -171,29 +173,167 @@
                         p {
                             padding-right: 5px;
                         }
+                        #button-heart {
+                            border: none;
+                            background-color: white;
+                            cursor: pointer;
+                            .heart {
+                                color: $first-primary-color;
+                            }
+                        }
                     }
                 }
             }
         }
     }
     
+    #aside {
+        display: none;
+    }
+    
     @media all and (min-width: 1161px) {
+        //HEADER
         #main-header {
             display: flex;
-            img {
-                height: 60px;
+            align-items: center;
+            justify-content: space-between;
+            width: 73%;
+            margin-bottom: 50px;
+            margin-top: 30px;
+            //logo
+            #logo {
+                padding-top: 0;
+                margin-bottom: 0;
+                margin-left: 30px;
+                height: 50px;
             }
-            .tags-container-index {
-                // padding-top: 30px;
-                // margin: 55px auto;
-                /* comportement visuel de cellule */
+            //navigation
+            nav {
+                display: flex;
+                flex-direction: column;
+                .tags-container-index {}
             }
         }
-        //Nos photographes
+        //Nos photographes Titre
         #main-index {
             h1 {
-                font-size: 36px;
+                top: 35px;
+                right: 45px;
+                font-size: 25px;
                 color: $first-primary-color;
+            }
+        }
+        //Afficha de tous les photographers
+        #main-index {
+            #container-photographers-list {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                .photographers-list {
+                    width: 30%;
+                    margin-bottom: 30px;
+                    img {
+                        width: 150px;
+                        height: 150px;
+                    }
+                }
+            }
+        }
+        //PAGE D'UN PHOTOGRAPHE
+        #page-photographer {
+            #container-personal-informations {
+                position: relative;
+                //informations personnalles
+                h1 {
+                    font-size: 50px;
+                }
+                #city-country-photographer {
+                    font-size: 25px;
+                    padding-bottom: 15px;
+                }
+                #tagline-photographer {
+                    font-size: 16px;
+                    padding-bottom: 10px;
+                }
+                #all-tags {
+                    font-size: 16px;
+                }
+                //button contactez moi
+                #container-button {
+                    position: absolute;
+                    left: 340px;
+                    top: 10px;
+                    button {
+                        padding: 15px 10px 15px 10px;
+                    }
+                }
+                //photo de profil
+                #container-picture-profil {
+                    img {
+                        width: 150px;
+                        height: 150px;
+                    }
+                }
+            }
+            #order-medias-container {
+                display: block;
+                margin-bottom: 50px;
+                label {
+                    font-weight: 700;
+                }
+                select {
+                    background-color: #901C1C;
+                    border: none;
+                    border-radius: 5px;
+                    color: white;
+                    padding: 10px 20px 10px 20px;
+                    option {
+                        border-bottom: 1px white solid;
+                    }
+                }
+            }
+            #container-medias {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                .medias {
+                    width: 30%;
+                    .image-medias {
+                        img {
+                            height: 250px;
+                        }
+                    }
+                    .description-medias {
+                        p {
+                            font-size: 17px;
+                        }
+                    }
+                }
+            }
+        }
+        #aside {
+            display: block;
+            position: fixed;
+            bottom: 0;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            background-color: $first-secondary-color;
+            border-radius: 5px;
+            width: 25%;
+            padding: 15px;
+            text-align: center;
+            #container-aside-likes {
+                display: flex;
+                font-weight: 700;
+                font-size: 16px;
+                p {
+                    margin-right: 5px;
+                }
+            }
+            #container-aside-price {
+                font-weight: 700;
+                font-size: 16px;
             }
         }
     }

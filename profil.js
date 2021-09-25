@@ -3,6 +3,7 @@
 
 const $containerPersonalInformations = document.querySelector("#container-personal-informations");
 const $containerMedias = document.querySelector("#container-medias");
+const $aside = document.querySelector("#aside");
 
 
 //requete$containerPersonalInformations
@@ -63,15 +64,15 @@ request.addEventListener("load", () => {
 
 
         //Ajout des medias 
-        photographerMedia.forEach(e => {
+        photographerMedia.forEach(media => {
 
             let imagePath;
             //s'il c'est une image
-            if (e.image) {
+            if (media.image) {
                 //Garder que le premier prenom/premiere chaine de caractere, avant l'espace
                 const folderPhotographerName = photographerData.name.split(" ")[0];
                 //liens vers l'image
-                imagePath = `images/${folderPhotographerName}/${e.image}`;
+                imagePath = `images/${folderPhotographerName}/${media.image}`;
             } else {
                 //si ce n'est pas une image, afficher le logo
                 imagePath = `images/logo/logo.png`;
@@ -87,19 +88,55 @@ request.addEventListener("load", () => {
                     <img src="${imagePath}" alt="">
                 </div>
                 <div class="description-medias">
-                    <p>${e.title}</p>
+                    <p>${media.title}</p>
                     <div class="container-likes">
-                        <p>${e.likes}</p>
-                        <i class="fas fa-heart"></i>
+                        <p>${media.likes}</p>
+                       <button id="button-heart"><i class="fas fa-heart heart"></i></button>
                     </div>
 
                 </div>
             </section>
         `
 
+
         });
 
 
+        //NUMERO TOTAL DE LIKES 
+        //tableau qui contiendra tous les likes
+        let likesTable = [];
+        //parcourir le tableau
+        photographerMedia.forEach(media => {
+            //ajouter les likes dans le tableau
+            likesTable.push(media.likes);
+        });
+
+
+        // tableau pour le total de likes
+        let totalLikes = 0;
+        //parcourir le tableau avec tous les likes 
+        likesTable.forEach((like) => {
+            //faire la somme de tous les likes du tableau 
+            //et la stocker
+            totalLikes = totalLikes + like;
+
+        });
+
+
+
+
+        $aside.innerHTML += `     
+            <div id="container-aside-likes">
+            <p>${totalLikes}</p>
+<div class="container-likes">
+            <i class="fas fa-heart"></i>
+            </div>
+        </div>
+        <div id="container-aside-price">
+            <p>${photographerData.price}/jour€</p>
+        </div>
+
+        `
 
 
 
