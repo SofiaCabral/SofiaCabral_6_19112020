@@ -2,7 +2,7 @@
 
 
 const $containerPersonalInformations = document.querySelector("#container-personal-informations");
-const $containerMedias = document.querySelector("#container-medias");
+let $containerMedias = document.querySelector("#container-medias");
 const $aside = document.querySelector("#aside");
 
 
@@ -53,7 +53,7 @@ request.addEventListener("load", () => {
     </div>
 
  <div id="container-picture-profil">
-    <img src="Images/PhotographersPictures/${photographerData.portrait}" alt="">
+    <img id="photo-profil" src="Images/PhotographersPictures/${photographerData.portrait}" alt="">
    </div>     
         `
 
@@ -63,6 +63,25 @@ request.addEventListener("load", () => {
         //filter permet de recuperer plusieurs elemets 
         const photographerMedia = data.media.filter((dataOnePhotographerMedia) => dataOnePhotographerMedia.photographerId == onlyId);
 
+        //let du filtage titre
+        let orderMediasSelect = document.querySelector("#order-medias-select");
+
+        //ORDRE ALPHABETIQUE 
+        // photographerMedia.sort(function(a, b) {
+        //     return a.title.localeCompare(b.title);
+        // });
+
+        //ORDRE POPULARITE plus de likes à moins
+        // photographerMedia.sort(function(a, b) {
+        //     return b.likes - a.likes;
+        // });
+
+        //ORDRE DATE, plus recente à plus ancienne
+        // photographerMedia.sort(function(a, b) {
+        //     return new Date(b.date) - new Date(a.date);
+        // });
+
+        console.log(photographerMedia);
 
         //Ajout des medias 
         photographerMedia.forEach(media => {
@@ -78,32 +97,169 @@ request.addEventListener("load", () => {
                 //si ce n'est pas une image, afficher le logo
                 imagePath = `images/logo/logo.png`;
             }
-
-            // affichage des medias
             $containerMedias.innerHTML += `
-    
+            <section class="medias-section">
 
-          
-            <section class="medias">
-            <div id="container-image-medias>
-                <div class="image-medias">
-                    <img src="${imagePath}" alt="">
+                <div class="image-medias-container">
+                    <a href=""><img class="img-medias" src="${imagePath}" alt=""></a>
                 </div>
-            </div>
+
                 <div class="description-medias">
                     <p>${media.title}</p>
                     <div class="container-likes">
-                        <p>${media.likes}</p>
-                       <button id="button-heart"><i class="fas fa-heart heart"></i></button>
+                        <p class="like">${media.likes}</p>
+                        <i class="fas fa-heart medias-heart"></i>
                     </div>
 
                 </div>
             </section>
-        `
+            `
+
+            orderMediasSelect.addEventListener("change", () => {
+
+                //popularite
+                if (orderMediasSelect.selectedIndex == 0) {
+
+                    console.log("0");
+
+                    // affichage des medias
+                    $containerMedias.innerHTML = $containerMedias.innerHTML.replace(`
+                        <section class="medias-section">
+
+                            <div class="image-medias-container">
+                                <a href=""><img class="img-medias" src="${imagePath}" alt=""></a>
+                            </div>
+
+                            <div class="description-medias">
+                                <p>${media.title}</p>
+                                <div class="container-likes">
+                                    <p class="like">${media.likes}</p>
+                                    <i class="fas fa-heart medias-heart"></i>
+                                </div>
+
+                            </div>
+                        </section>
+                        `)
+                        //date
+                } else if (orderMediasSelect.selectedIndex == 1) {
+                    console.log("1");
+                    // affichage des medias
+                    $containerMedias.innerHTML = $containerMedias.innerHTML.replace(`
+                   <section class="medias-section">
+
+                       <div class="image-medias-container">
+                           <a href=""><img class="img-medias" src="${imagePath}" alt=""></a>
+                       </div>
+
+                       <div class="description-medias">
+                           <p>${media.title}</p>
+                           <div class="container-likes">
+                               <p class="like">${media.likes}</p>
+                               <i class="fas fa-heart medias-heart"></i>
+                           </div>
+
+                       </div>
+                   </section>
+                   `)
+                        //titre
+
+                } else if (orderMediasSelect.selectedIndex == 2) {
+                    console.log("2");
+                    // affichage des medias
+
+
+                    // console.log(photographerMedia);
+
+
+
+                    // console.log(media);
+
+
+                    $containerMedias.innerHTML = $containerMedias.innerHTML.replace(`
+                <section class="medias-section">
+
+                    <div class="image-medias-container">
+                        <a href=""><img class="img-medias" src="${imagePath}" alt=""></a>
+                    </div>
+
+                    <div class="description-medias">
+                        <p>${media.title}</p>
+                        <div class="container-likes">
+                            <p class="like">${media.likes}</p>
+                            <i class="fas fa-heart medias-heart"></i>
+                        </div>
+
+                    </div>
+                </section>
+                `)
+                        // let test;
+                        // test = photographerMedia.title.sort();
+                        // console.log(test);
+
+
+                }
+
+
+            });
+
+
+
+
 
 
         });
 
+
+
+
+
+
+
+
+        //AUGMENTER LES LIKES
+        // const mediasHeart = document.querySelector(".medias-heart");
+
+        // // numero de like qui est dedans le paragraphe
+        // let like = document.querySelector(".like").innerHTML;
+
+        // // buttonHeart.addEventListener("click", () => {
+
+        // //     like++;
+        // //     likeParagraphe.innerHTML = like;
+        // //     console.log(like);
+        // // let test;
+        // photographerMedia.forEach((media, i) => {
+        //     // test = media;
+
+
+
+        //     mediasHeart.addEventListener("click", () => {
+        //         // test++;
+
+        //         console.log(media[i]);
+
+
+
+
+
+        //     });
+
+        // });
+        //Ajout de la lightbox 
+        //conteneur de l'image des medias
+        // const containerImageMedias = document.querySelector("#container-image-medias");
+
+        // const imgMedias = document.querySelector("#img-medias");
+        // imgMedias.addEventListener('click', openLightBox);
+
+
+
+        // //fonction de validation de formulaire
+        // function openLightBox() {
+
+
+
+        // }
 
         //NUMERO TOTAL DE LIKES 
         //tableau qui contiendra tous les likes
@@ -126,8 +282,6 @@ request.addEventListener("load", () => {
         });
 
 
-
-
         $aside.innerHTML += `     
             <div id="container-aside-likes">
             <p>${totalLikes}</p>
@@ -139,6 +293,47 @@ request.addEventListener("load", () => {
             <p>${photographerData.price}/jour€</p>
         </div>
 
+        `
+            //MODAL
+            //conteneur modal 
+        const $modalContainer = document.querySelector("#modal-container");
+
+        $modalContainer.innerHTML += `
+
+            <div id="modal-content">
+            <button id="close-modal-button"><i class="fas fa-times"></i></button>
+            <div id="form-container">
+                <form name="contact" action="index.html" method="get">
+                    <!-- <div id="container-title"> -->
+                    <h1>Contactez-moi <br /> ${photographerData.name} </h1>
+
+
+                    <!-- </div> -->
+                    <div class="formData-container">
+                        <label for="first-name">Prénom</label><br />
+                        <input class="input-text-style" type="text" id="first-name" name="firstName" /><br />
+
+                    </div>
+                    <div class="formData-container">
+                        <label for="last">Nom</label><br />
+                        <input class="input-text-style" type="text" id="last" name="last" /><br />
+
+                    </div>
+                    <div class="formData-container">
+                        <label for="email">E-mail</label><br />
+                        <input class="input-text-style" type="email" id="email" name="email" /><br />
+
+                    </div>
+                    <div class="formData-container">
+                        <label for="message">Votre message</label><br />
+                        <textarea class="input-text-style" name="message" id="message"></textarea>
+                    </div>
+                    <div id="button-submit-container">
+                        <input id="button-submit" type="submit" value="Envoyer" />
+                    </div>
+                </form>
+            </div>
+        </div>
         `
 
 
@@ -165,6 +360,7 @@ request.addEventListener("load", () => {
             modalContainer.style.display = "none";
         }
 
+
         //afficher le resultat sur les logs
         //button sbmit
         const buttonSubmit = document.querySelector("#button-submit");
@@ -173,8 +369,6 @@ request.addEventListener("load", () => {
         const email = document.querySelector("#email");
         //evenement sur le bouton submit
         buttonSubmit.addEventListener('click', validationForm);
-
-
 
         //fonction de validation de formulaire
         function validationForm(e) {
@@ -186,23 +380,9 @@ request.addEventListener("load", () => {
 
 
         }
-        // //Au clic sur le bouton du coeur
-        // const buttonHeart = document.querySelector("#button-heart");
-        // console.log(buttonHeart);
 
 
-        // buttonHeart.addEventListener("click", () => {
-        //     //on parcourt le tableau avec tous les likes 
-        //     likesTable.forEach((like) => {
-        //         //on ajoute un
 
-
-        //     });
-
-        //     console.log(likesTable);
-
-
-        // });
 
 
 

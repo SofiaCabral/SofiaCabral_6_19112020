@@ -30,15 +30,22 @@
         <div id="order-medias-container">
             <label for="order-medias-select">Trier par</label>
             <select name="select" id="order-medias-select">
-                <option value="popular">Popularité</option>
-                <option value="date">Date</option>
-                <option value="title">Titre</option>
+                <option value="popular" id="popular">Popularité</option>
+                <option value="date" id="date">Date</option>
+                <option value="title" id="title">Titre</option>
             </select>
         </div>
 
         <article id="container-medias">
 
         </article>
+
+
+        <!-- <div id="light-box">
+            <div id="light-box-image-container">
+                <img src="" alt="">
+            </div>
+        </div> -->
 
 
     </main>
@@ -49,40 +56,7 @@
     <!--Formulaire-->
 
     <div id="modal-container">
-        <div id="modal-content">
-            <button id="close-modal-button"><i class="fas fa-times"></i></button>
-            <div id="form-container">
-                <form name="contact" action="index.html" method="get">
-                    <!-- <div id="container-title"> -->
-                    <h1>Contactez-moi</h1>
 
-
-                    <!-- </div> -->
-                    <div class="formData-container">
-                        <label for="first-name">Prénom</label><br />
-                        <input class="input-text-style" type="text" id="first-name" name="firstName" /><br />
-
-                    </div>
-                    <div class="formData-container">
-                        <label for="last">Nom</label><br />
-                        <input class="input-text-style" type="text" id="last" name="last" /><br />
-
-                    </div>
-                    <div class="formData-container">
-                        <label for="email">E-mail</label><br />
-                        <input class="input-text-style" type="email" id="email" name="email" /><br />
-
-                    </div>
-                    <div class="formData-container">
-                        <label for="message">Votre message</label><br />
-                        <textarea class="input-text-style" name="message" id="message"></textarea>
-                    </div>
-                    <div id="button-submit-container">
-                        <input id="button-submit" type="submit" value="Envoyer" />
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
     <!--Fichier JS-->
 

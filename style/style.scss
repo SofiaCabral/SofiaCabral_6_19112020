@@ -98,7 +98,7 @@
                             // position: relative;
                             margin-bottom: 40px;
                             h1 {
-                                font-size: 16px;
+                                font-size: 28px;
                                 color: $second-primary-color;
                             }
                             #city-country-photographer {
@@ -139,9 +139,11 @@
                                 }
                             }
                             #container-picture-profil {
-                                img {
-                                    width: 100px;
-                                    height: 100px;
+                                #photo-profil {
+                                    width: 90px;
+                                    height: 90px;
+                                    margin-left: -40px;
+                                    margin-top: -10px;
                                     object-fit: cover;
                                     object-position: center;
                                     border-radius: 50%;
@@ -152,12 +154,12 @@
                             display: none;
                         }
                         #container-medias {
-                            .medias {
+                            .medias-section {
                                 margin-bottom: 10px;
-                                .image-medias {
-                                    img {
-                                        width: 100%;
+                                .image-medias-container {
+                                    .img-medias {
                                         height: 190px;
+                                        width: 100%;
                                         object-fit: cover;
                                         border-radius: 5px;
                                     }
@@ -170,15 +172,13 @@
                                     .container-likes {
                                         display: flex;
                                         align-items: center;
-                                        p {
-                                            padding-right: 5px;
-                                        }
-                                        #button-heart {
-                                            border: none;
-                                            background-color: white;
-                                            cursor: pointer;
-                                            .heart {
+                                        .container-likes {
+                                            .like {
+                                                margin-right: 20px;
+                                            }
+                                            .medias-heart {
                                                 color: $first-primary-color;
+                                                cursor: pointer;
                                             }
                                         }
                                     }
@@ -365,15 +365,15 @@
                                 display: flex;
                                 flex-wrap: wrap;
                                 justify-content: space-between;
-                                .medias {
+                                .medias-section {
                                     width: 30%;
-                                    .image-medias {
-                                        img {
+                                    .image-medias-container {
+                                        .img-medias {
                                             height: 250px;
                                         }
                                     }
                                     .description-medias {
-                                        p {
+                                        .like {
                                             font-size: 17px;
                                         }
                                     }
