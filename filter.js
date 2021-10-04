@@ -1,3 +1,5 @@
+//ul dedans la nav des tags (ul)
+const $tagsContainer = document.querySelector(".tags-container");
 //au chargerment de la page
 request.addEventListener("load", () => {
     data = JSON.parse(request.response); //transgormer json en js en stocker en data
@@ -19,8 +21,11 @@ request.addEventListener("load", () => {
 
                 //s'il n'a pas la tag dans le tableau, nous l'ajoutons
                 if (!onlyOneTag.includes(tag)) {
-                    //on la met sur le tableau vide du depart
-                    onlyOneTag.push(tag);
+                    //ne pas mettre la tag 'sports"
+                    if (tag != 'sports') {
+                        //on la met sur le tableau vide du depart
+                        onlyOneTag.push(tag);
+                    }
                 }
             });
 

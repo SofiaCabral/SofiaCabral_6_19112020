@@ -201,13 +201,69 @@ h1 {
           align-items: center;
 }
 
-#page-photographer #container-medias .medias-section .description-medias .container-likes .container-likes .like {
-  margin-right: 20px;
+#page-photographer #container-medias .medias-section .description-medias .container-likes button {
+  color: #901C1C;
 }
 
-#page-photographer #container-medias .medias-section .description-medias .container-likes .container-likes .medias-heart {
+#page-photographer #container-medias .medias-section .description-medias .container-likes .like {
+  padding-right: 5px;
+}
+
+#page-photographer #container-medias .medias-section .description-medias .container-likes .medias-heart {
   color: #901C1C;
   cursor: pointer;
+}
+
+#page-photographer #light-box {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+#page-photographer #light-box #container-light-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 50% auto;
+  width: 90%;
+  position: relative;
+}
+
+#page-photographer #light-box #container-light-box #close-light-box-button {
+  position: absolute;
+  top: 0;
+  right: 25px;
+}
+
+#page-photographer #light-box #container-light-box button {
+  font-size: 18px;
+  background-color: white;
+  border: none;
+  color: #901C1C;
+}
+
+#page-photographer #light-box #container-light-box #light-box-image-container {
+  margin: 0 10px 0 10px;
+  width: 70%;
+}
+
+#page-photographer #light-box #container-light-box #light-box-image-container img {
+  height: 230px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
 }
 
 #aside {
@@ -288,7 +344,7 @@ h1 {
   border: none;
 }
 
-@media all and (min-width: 1161px) {
+@media all and (min-width: 766px) {
   #main-header {
     display: -webkit-box;
     display: -ms-flexbox;

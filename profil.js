@@ -4,6 +4,82 @@
 const $containerPersonalInformations = document.querySelector("#container-personal-informations");
 let $containerMedias = document.querySelector("#container-medias");
 const $aside = document.querySelector("#aside");
+const $closeLightBox = document.querySelector("#close-light-box");
+
+
+//Pour stocker les donnees personnelles d'un photographer 
+let photographerMedia;
+
+//Pour stocker medias d'un photographer 
+let photographerData;
+
+//balise image dedans la light box 
+const $imageLightBox = document.querySelector("#light-box img");
+const lightBox = document.querySelector("#light-box");
+let folderPhotographerName;
+
+let imagePath;
+
+const lightBoxRightButton = document.querySelector('#light-box-right-button');
+const lightBoxLeftButton = document.querySelector('#light-box-left-button');
+
+//on prends l'index 
+function displayLightBox(i) {
+    //prendre les noms avant l'espace pour pouvoir trouver le dossier 
+    folderPhotographerName = photographerData.name.split(" ")[0]
+        //cherhcer l'image dans le folder 
+    imagePath = `images/${folderPhotographerName}/${photographerMedia[i].image}`; // image media du photograher
+    $imageLightBox.src = imagePath;
+    lightBox.style.display = 'block';
+    goToTheRight(i);
+
+    // goToTheLeft(i);
+    // i++;
+    // $imageLightBox.src = imagePath;
+}
+
+function moreLike() {
+    console.log('ok');
+}
+
+
+function closeLightBox() {
+    lightBox.style.display = 'none';
+}
+
+function goToTheRight(i) {
+    lightBoxRightButton.addEventListener('click', () => {
+        // if (i < photographerMedia.lenght) {
+
+        // photographerMedia.forEach((m, i, a) => {
+
+        // if (i < a) {
+        i++;
+        imagePath = `images/${folderPhotographerName}/${photographerMedia[i].image}`; // image media du photograher
+        $imageLightBox.src = imagePath;
+        // }
+        // });
+
+
+
+
+        // }
+    });
+}
+
+// function goToTheLeft(i) {
+//     lightBoxRightButton.addEventListener('click', () => {
+//         // photographerMedia.forEach((m, i) => {
+
+//         i--;
+//         imagePath = `images/${folderPhotographerName}/${photographerMedia[i].image}`; // image media du photograher
+//         $imageLightBox.src = imagePath;
+
+//         // });
+//     });
+// }
+
+
 
 
 //requete$containerPersonalInformations
@@ -16,18 +92,14 @@ request.send();
 request.addEventListener("load", () => {
     data = JSON.parse(request.response); //transgormer json en js en stocker en data
     if (request.status == 200 || request.status == 201) { //si tout se passe bien
-
-
-
         //Récupearation de l'id dans l'url
         const idURL = window.location.search;
         //enlever le ? et garder que l'id
         const onlyId = idURL.slice(1);
         // console.log(onlyId);
-
         //Selectionner photographe en fonction de l'id du url
         //find permet de recuperer le premier element
-        const photographerData = data.photographers.find((dataOnePhotographer) => dataOnePhotographer.id == onlyId);
+        photographerData = data.photographers.find((dataOnePhotographer) => dataOnePhotographer.id == onlyId);
 
         let tagsHTML = `<ul id="tags-container-photographers">`;
 
@@ -57,40 +129,21 @@ request.addEventListener("load", () => {
    </div>     
         `
 
-
-
         //trouver les id du photographer sur les media du json qui correspond a l'id recupere dans l'url
         //filter permet de recuperer plusieurs elemets 
-        const photographerMedia = data.media.filter((dataOnePhotographerMedia) => dataOnePhotographerMedia.photographerId == onlyId);
+        photographerMedia = data.media.filter((dataOnephotographer) => dataOnephotographer.photographerId == onlyId);
 
-        //let du filtage titre
-        let orderMediasSelect = document.querySelector("#order-medias-select");
 
-        //ORDRE ALPHABETIQUE 
-        // photographerMedia.sort(function(a, b) {
-        //     return a.title.localeCompare(b.title);
-        // });
+        let imagePath;
+        let folderPhotographerName;
+        //ORDRE DES MEDIAS PAR DEFAUT 
+        photographerMedia.forEach((media, i) => {
 
-        //ORDRE POPULARITE plus de likes à moins
-        // photographerMedia.sort(function(a, b) {
-        //     return b.likes - a.likes;
-        // });
 
-        //ORDRE DATE, plus recente à plus ancienne
-        // photographerMedia.sort(function(a, b) {
-        //     return new Date(b.date) - new Date(a.date);
-        // });
-
-        console.log(photographerMedia);
-
-        //Ajout des medias 
-        photographerMedia.forEach(media => {
-
-            let imagePath;
             //s'il c'est une image
             if (media.image) {
                 //Garder que le premier prenom/premiere chaine de caractere, avant l'espace
-                const folderPhotographerName = photographerData.name.split(" ")[0];
+                folderPhotographerName = photographerData.name.split(" ")[0];
                 //liens vers l'image
                 imagePath = `images/${folderPhotographerName}/${media.image}`;
             } else {
@@ -101,7 +154,8 @@ request.addEventListener("load", () => {
             <section class="medias-section">
 
                 <div class="image-medias-container">
-                    <a href=""><img class="img-medias" src="${imagePath}" alt=""></a>
+                <!--quand on clique sur l'image, on declence la function pour afficher la light box -->
+                   <img class="img-medias" src="${imagePath}" alt="" onclick="displayLightBox(${i})">
                 </div>
 
                 <div class="description-medias">
@@ -114,156 +168,151 @@ request.addEventListener("load", () => {
                 </div>
             </section>
             `
+        });
 
-            orderMediasSelect.addEventListener("change", () => {
+        //FILTRAGE DES MEDIAS /CHANGEMENT D ORDRE
+        let orderMediasSelect = document.querySelector("#order-medias-select");
+        console.log(orderMediasSelect.selectedIndex);
+        orderMediasSelect.addEventListener("change", () => {
+            $containerMedias.innerHTML = "";
 
-                //popularite
-                if (orderMediasSelect.selectedIndex == 0) {
-
-                    console.log("0");
-
-                    // affichage des medias
-                    $containerMedias.innerHTML = $containerMedias.innerHTML.replace(`
-                        <section class="medias-section">
-
-                            <div class="image-medias-container">
-                                <a href=""><img class="img-medias" src="${imagePath}" alt=""></a>
-                            </div>
-
-                            <div class="description-medias">
-                                <p>${media.title}</p>
-                                <div class="container-likes">
-                                    <p class="like">${media.likes}</p>
-                                    <i class="fas fa-heart medias-heart"></i>
-                                </div>
-
-                            </div>
-                        </section>
-                        `)
-                        //date
-                } else if (orderMediasSelect.selectedIndex == 1) {
-                    console.log("1");
-                    // affichage des medias
-                    $containerMedias.innerHTML = $containerMedias.innerHTML.replace(`
-                   <section class="medias-section">
-
-                       <div class="image-medias-container">
-                           <a href=""><img class="img-medias" src="${imagePath}" alt=""></a>
-                       </div>
-
-                       <div class="description-medias">
-                           <p>${media.title}</p>
-                           <div class="container-likes">
-                               <p class="like">${media.likes}</p>
-                               <i class="fas fa-heart medias-heart"></i>
-                           </div>
-
-                       </div>
-                   </section>
-                   `)
-                        //titre
-
-                } else if (orderMediasSelect.selectedIndex == 2) {
-                    console.log("2");
-                    // affichage des medias
-
-
-                    // console.log(photographerMedia);
+            //POPULARITE 
+            if (orderMediasSelect.selectedIndex == 0) {
+                console.log('0');
+                //ORDRE POPULARITE plus de likes à moins
+                photographerMedia.sort(function(a, b) {
+                    return b.likes - a.likes;
+                });
 
 
 
-                    // console.log(media);
+            }
+            //DATE 
+            if (orderMediasSelect.selectedIndex == 1) {
+
+                console.log("1");
+                //ORDRE DATE, plus recente à plus ancienne
+                photographer.sort(function(a, b) {
+                    return new Date(b.date) - new Date(a.date);
+                });
 
 
-                    $containerMedias.innerHTML = $containerMedias.innerHTML.replace(`
+            }
+            //TITRE
+            if (orderMediasSelect.selectedIndex == 2) {
+
+                console.log("2");
+                //ORDRE ALPHABETIQUE 
+                photographerMedia.sort(function(a, b) {
+                    return a.title.localeCompare(b.title);
+                });
+
+
+            }
+
+
+            photographerMedia.forEach(media => {
+
+
+                //s'il c'est une image
+                if (media.image) {
+                    //Garder que le premier prenom/premiere chaine de caractere, avant l'espace
+                    folderPhotographerName = photographerData.name.split(" ")[0];
+                    //liens vers l'image
+                    imagePath = `images/${folderPhotographerName}/${media.image}`;
+                } else {
+                    //si ce n'est pas une image, afficher le logo
+                    imagePath = `images/logo/logo.png`;
+                }
+                $containerMedias.innerHTML += `
                 <section class="medias-section">
-
+    
                     <div class="image-medias-container">
-                        <a href=""><img class="img-medias" src="${imagePath}" alt=""></a>
-                    </div>
+                      <img class="img-medias" src="${imagePath}" alt="">
 
+                      
+                    </div>
+    
                     <div class="description-medias">
                         <p>${media.title}</p>
                         <div class="container-likes">
-                            <p class="like">${media.likes}</p>
-                            <i class="fas fa-heart medias-heart"></i>
+                            <button class="like">${media.likes}</button>
+                         
+                        <i class="fas fa-heart medias-heart"></i>
                         </div>
-
+    
                     </div>
                 </section>
-                `)
-                        // let test;
-                        // test = photographerMedia.title.sort();
-                        // console.log(test);
-
-
-                }
-
-
+                `
             });
-
-
-
-
 
 
         });
 
-
-
-
-
-
-
-
         //AUGMENTER LES LIKES
+
+        //  numero de like qui est dedans le paragraphe
+
+        // let likeNumber = document.querySelectorAll(".like");
+        // let mediasHeart = document.querySelector(".medias-heart");
+        // let likeNumberTextContent = [];
+        // let likeNumberAddition = [];
+        // mediasHeart.addEventListener("click", (e) => {
+        //     //Prendre le contenu du paragraphe et le stocker dans une nouvelle variable
+        //     likeNumber.forEach(element => {
+
+        //         likeNumberTextContent.push(element.textContent);
+
+        //     });
+        //     likeNumberTextContent.forEach(element => {
+        //         element++;
+        //         likeNumberAddition.push(element);
+        //     });
+        //     console.log(likeNumberAddition);
+        //     console.log(e.target);
+
+        // });
+
+
+
+
+
+
+        // photographerMedia.forEach((media, i) => {
+        //     console.log(likeNumber);
+        //     // like++;
+        //     //     likeParagraphe.innerHTML = like;
+        //     //     console.log(like);
+        //     // let test;
+        //     // photographer.forEach((media, i) => {
+        //     // test = media;
+        // });
+        // });
+
+
+        // mediasHeart.addEventListener("click", () => {
+        //     // test++;
+
+        //     console.log('ok');
+        // //AUGMENTER LES LIKES
         // const mediasHeart = document.querySelector(".medias-heart");
 
         // // numero de like qui est dedans le paragraphe
-        // let like = document.querySelector(".like").innerHTML;
+        // // let like = document.querySelector(".like").innerHTML;
 
-        // // buttonHeart.addEventListener("click", () => {
+        // buttonHeart.addEventListener("click", () => {
 
-        // //     like++;
-        // //     likeParagraphe.innerHTML = like;
-        // //     console.log(like);
-        // // let test;
-        // photographerMedia.forEach((media, i) => {
-        //     // test = media;
+        //     like++;
+        //     likeParagraphe.innerHTML = like;
+        //     console.log(like);
 
-
-
-        //     mediasHeart.addEventListener("click", () => {
-        //         // test++;
-
-        //         console.log(media[i]);
-
-
-
-
-
-        //     });
 
         // });
-        //Ajout de la lightbox 
-        //conteneur de l'image des medias
-        // const containerImageMedias = document.querySelector("#container-image-medias");
-
-        // const imgMedias = document.querySelector("#img-medias");
-        // imgMedias.addEventListener('click', openLightBox);
-
-
-
-        // //fonction de validation de formulaire
-        // function openLightBox() {
-
-
-
-        // }
 
         //NUMERO TOTAL DE LIKES 
         //tableau qui contiendra tous les likes
         let likesTable = [];
+        // let like = document.querySelector(".medias-heart");
         //parcourir le tableau
         photographerMedia.forEach(media => {
             //ajouter les likes dans le tableau
@@ -280,6 +329,9 @@ request.addEventListener("load", () => {
             totalLikes = totalLikes + like;
 
         });
+
+
+
 
 
         $aside.innerHTML += `     
@@ -368,10 +420,10 @@ request.addEventListener("load", () => {
         const last = document.querySelector("#last");
         const email = document.querySelector("#email");
         //evenement sur le bouton submit
-        buttonSubmit.addEventListener('click', validationForm);
+        buttonSubmit.addEventListener('click', getValue);
 
         //fonction de validation de formulaire
-        function validationForm(e) {
+        function getValue(e) {
             e.preventDefault();
             //Affichage des values sur la console
             console.log(firstName.value);
@@ -380,6 +432,8 @@ request.addEventListener("load", () => {
 
 
         }
+
+
 
 
 

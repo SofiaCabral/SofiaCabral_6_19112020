@@ -1,7 +1,8 @@
-//DOM ELEMENTS
-//variable pour le contenu de la page d'accueil
+//DOM ELEMENTS - PAGE INDEX 
+
+
+//article qui contient les vignettes des photographes
 const $containerPhotographersList = document.querySelector("#container-photographers-list");
-const $tagsContainer = document.querySelector(".tags-container");
 
 
 
@@ -14,6 +15,7 @@ request.send();
 
 //au chargerment de la page
 request.addEventListener("load", () => {
+    //data contient les photographes et les medias 
     data = JSON.parse(request.response); //transgormer json en js en stocker en data
     if (request.status == 200 || request.status == 201) { //si tout se passe bien
 
@@ -24,21 +26,19 @@ request.addEventListener("load", () => {
         data.photographers.forEach(({ name, city, country, tagline, price, portrait, id, tags }) => {
 
 
-
+            //CREATION D'UNE VARIABLE AVEC LES TAG DE CHAQUE PHOTOGRAPHE 
             let tagsHTML = `<ul class="tags-container">`;
-
-            //affichage des all-tags
             tags.forEach(tag => {
-
+                //transformer la tag 'sports' en 'sport'
+                if (tag == 'sports') {
+                    tag = 'sport';
+                }
                 tagsHTML += `<li class="tags">#${tag}</li>`
+
             });
-            //peut etre pour pas écraser le resultat de l'autre variable
-            //ul + </ul>
-            tagsHTML += `</ul>`;
-            // console.log(tags);
-            // all-tagsHTML =  all-tagsHTML + "</ul>";
-            //innertext plus clés
-            //transmissions de donnees par url
+            tagsHTML += `</ul>`; //peut etre pour pas écraser le resultat de l'autre variable    //ul + </ul>
+
+            //AFFICAHE DES VIGNETTES DES PHOTOGRAPHES 
             $containerPhotographersList.innerHTML += `
             <section class="photographers-list">
             <div class="photographers-pictures">
@@ -70,7 +70,3 @@ request.addEventListener("load", () => {
 request.addEventListener("error", (e) => { //afficher l'erreur
     console.log(e);
 })
-
-
-
-// const photographerData = data.photographers.find((id) => id === onlyId);
