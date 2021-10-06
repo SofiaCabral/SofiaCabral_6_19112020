@@ -6,6 +6,168 @@ let $containerMedias = document.querySelector("#container-medias");
 const $aside = document.querySelector("#aside");
 const $closeLightBox = document.querySelector("#close-light-box");
 
+// class LightBox {
+//     constructor(photographerData) {
+//         this.photographerData = photographerData;
+//     }
+
+//     displayLightBox(i) {
+//         //prendre les noms avant l'espace pour pouvoir trouver le dossier 
+//         const folderPhotographerName = this.photographerData.name.split(" ")[0]
+//         lightBoxIndex = i;
+
+//         //cherhcer l'image dans le folder 
+//         imagePath = `images/${folderPhotographerName}/${photographerMedia[i].image}`; // image media du photograher
+//         $imageLightBox.src = imagePath;
+//         lightBox.style.display = 'block';
+//         goToTheRight();
+//         goToTheLeft();
+
+//     }
+
+//     closeLightBox() {
+//         lightBox.style.display = 'none';
+//     }
+//     goToTheRight() {
+//         lightBoxRightButton.addEventListener('click', () => {
+//             if (lightBoxIndex < photographerMedia.length - 1) {
+
+//                 // photographerMedia.forEach((m, i, a) => {
+//                 console.log(lightBoxIndex);
+//                 // if (i < a) {
+//                 lightBoxIndex++;
+//                 if (!photographerMedia[lightBoxIndex].image) {
+//                     imagePath = `images/logo/logo.png`;
+//                 } else {
+//                     imagePath = `images/${folderPhotographerName}/${photographerMedia[lightBoxIndex].image}`;
+
+//                 }
+
+
+//                 $imageLightBox.src = imagePath;
+//                 // }
+//             };
+
+
+//             console.log(imagePath);
+//             console.log($imageLightBox.src);
+
+//             // }
+//         });
+//     }
+
+
+
+
+//     goToTheLeft() {
+//         lightBoxLeftButton.addEventListener('click', () => {
+//             console.log(lightBoxIndex);
+//             if (lightBoxIndex > 0) {
+
+//                 lightBoxIndex--;
+//                 if (!photographerMedia[lightBoxIndex].image) {
+//                     imagePath = `images/logo/logo.png`;
+//                 } else {
+//                     imagePath = `images/${folderPhotographerName}/${photographerMedia[lightBoxIndex].image}`;
+
+//                 }
+
+//                 $imageLightBox.src = imagePath;
+//                 console.log(photographerMedia[lightBoxIndex]);
+
+//             }
+//         });
+//     }
+// }
+
+// likeButton.addEventListener("click", (e) => {
+//     //Prendre le contenu du paragraphe et le stocker dans une nouvelle variable
+//     likeNumber.forEach(element => {
+
+//         likeNumberTextContent.push(element.textContent);
+
+//     });
+//     likeNumberTextContent.forEach(element => {
+//         element++;
+//         likeNumberAddition.push(element);
+//     });
+//     console.log(likeNumberAddition);
+//     console.log(e.target);
+
+// });
+
+
+// function displayLightBox(i) {
+//     //prendre les noms avant l'espace pour pouvoir trouver le dossier 
+//     const folderPhotographerName = this.photographerData.name.split(" ")[0]
+//     lightBoxIndex = i;
+
+//     //cherhcer l'image dans le folder 
+//     imagePath = `images/${folderPhotographerName}/${photographerMedia[i].image}`; // image media du photograher
+//     $imageLightBox.src = imagePath;
+//     lightBox.style.display = 'block';
+//     goToTheRight();
+//     goToTheLeft();
+
+// }
+
+// function closeLightBox() {
+//     lightBox.style.display = 'none';
+// }
+
+// function goToTheRight() {
+//     lightBoxRightButton.addEventListener('click', () => {
+//         if (lightBoxIndex < photographerMedia.length - 1) {
+
+//             // photographerMedia.forEach((m, i, a) => {
+//             console.log(lightBoxIndex);
+//             // if (i < a) {
+//             lightBoxIndex++;
+//             if (!photographerMedia[lightBoxIndex].image) {
+//                 imagePath = `images/logo/logo.png`;
+//             } else {
+//                 imagePath = `images/${folderPhotographerName}/${photographerMedia[lightBoxIndex].image}`;
+
+//             }
+
+
+//             $imageLightBox.src = imagePath;
+//             // }
+//         };
+
+
+//         console.log(imagePath);
+//         console.log($imageLightBox.src);
+
+//         // }
+//     });
+// }
+
+
+
+
+//     goToTheLeft() {
+//         lightBoxLeftButton.addEventListener('click', () => {
+//             console.log(lightBoxIndex);
+//             if (lightBoxIndex > 0) {
+
+//                 lightBoxIndex--;
+//                 if (!photographerMedia[lightBoxIndex].image) {
+//                     imagePath = `images/logo/logo.png`;
+//                 } else {
+//                     imagePath = `images/${folderPhotographerName}/${photographerMedia[lightBoxIndex].image}`;
+
+//                 }
+
+//                 $imageLightBox.src = imagePath;
+//                 console.log(photographerMedia[lightBoxIndex]);
+
+//             }
+//         });
+//     }
+// }
+
+
 
 //Pour stocker les donnees personnelles d'un photographer 
 let photographerMedia;
@@ -22,63 +184,120 @@ let imagePath;
 
 const lightBoxRightButton = document.querySelector('#light-box-right-button');
 const lightBoxLeftButton = document.querySelector('#light-box-left-button');
-
+let lightBoxIndex = -1;
 //on prends l'index 
 function displayLightBox(i) {
     //prendre les noms avant l'espace pour pouvoir trouver le dossier 
     folderPhotographerName = photographerData.name.split(" ")[0]
-        //cherhcer l'image dans le folder 
+    lightBoxIndex = i;
+
+    //cherhcer l'image dans le folder 
     imagePath = `images/${folderPhotographerName}/${photographerMedia[i].image}`; // image media du photograher
     $imageLightBox.src = imagePath;
     lightBox.style.display = 'block';
-    goToTheRight(i);
+    goToTheRight();
+    goToTheLeft();
 
-    // goToTheLeft(i);
-    // i++;
-    // $imageLightBox.src = imagePath;
 }
-
-function moreLike() {
-    console.log('ok');
-}
-
 
 function closeLightBox() {
     lightBox.style.display = 'none';
 }
 
-function goToTheRight(i) {
+function goToTheRight() {
     lightBoxRightButton.addEventListener('click', () => {
-        // if (i < photographerMedia.lenght) {
+        if (lightBoxIndex < photographerMedia.length - 1) {
 
-        // photographerMedia.forEach((m, i, a) => {
+            // photographerMedia.forEach((m, i, a) => {
+            console.log(lightBoxIndex);
+            // if (i < a) {
+            lightBoxIndex++;
+            if (!photographerMedia[lightBoxIndex].image) {
+                imagePath = `images/logo/logo.png`;
+            } else {
+                imagePath = `images/${folderPhotographerName}/${photographerMedia[lightBoxIndex].image}`;
 
-        // if (i < a) {
-        i++;
-        imagePath = `images/${folderPhotographerName}/${photographerMedia[i].image}`; // image media du photograher
-        $imageLightBox.src = imagePath;
-        // }
-        // });
+            }
 
 
+            $imageLightBox.src = imagePath;
+            // }
+        };
 
+
+        console.log(imagePath);
+        console.log($imageLightBox.src);
 
         // }
     });
 }
 
-// function goToTheLeft(i) {
-//     lightBoxRightButton.addEventListener('click', () => {
-//         // photographerMedia.forEach((m, i) => {
+function goToTheLeft() {
+    lightBoxLeftButton.addEventListener('click', () => {
+        console.log(lightBoxIndex);
+        if (lightBoxIndex > 0) {
 
-//         i--;
-//         imagePath = `images/${folderPhotographerName}/${photographerMedia[i].image}`; // image media du photograher
-//         $imageLightBox.src = imagePath;
+            lightBoxIndex--;
+            if (!photographerMedia[lightBoxIndex].image) {
+                imagePath = `images/logo/logo.png`;
+            } else {
+                imagePath = `images/${folderPhotographerName}/${photographerMedia[lightBoxIndex].image}`;
 
-//         // });
-//     });
-// }
+            }
 
+            $imageLightBox.src = imagePath;
+            console.log(photographerMedia[lightBoxIndex]);
+
+        }
+    });
+}
+
+// touches fléchées pour naviguer entre les médias. 
+window.addEventListener("keydown", e => {
+        if (e.code == "ArrowRight") {
+            if (lightBoxIndex < photographerMedia.length - 1) {
+
+                lightBoxIndex++;
+                if (!photographerMedia[lightBoxIndex].image) {
+                    imagePath = `images/logo/logo.png`;
+                } else {
+                    imagePath = `images/${folderPhotographerName}/${photographerMedia[lightBoxIndex].image}`;
+
+                }
+
+
+                $imageLightBox.src = imagePath;
+
+            };
+        } else if (e.code == "ArrowLeft") {
+
+            if (lightBoxIndex > 0) {
+
+                lightBoxIndex--;
+                if (!photographerMedia[lightBoxIndex].image) {
+                    imagePath = `images/logo/logo.png`;
+                } else {
+                    imagePath = `images/${folderPhotographerName}/${photographerMedia[lightBoxIndex].image}`;
+
+                }
+
+                $imageLightBox.src = imagePath;
+                console.log(photographerMedia[lightBoxIndex]);
+
+            }
+
+        }
+    })
+    // AUGMENTER LES LIKES
+
+function moreLike(i) {
+
+    //ajouter un like
+    photographerMedia[i].likes++;
+    //afficher dedans le paragraphe 
+    likeNumber[i].textContent = photographerMedia[i].likes;
+
+}
 
 
 
@@ -137,9 +356,9 @@ request.addEventListener("load", () => {
         let imagePath;
         let folderPhotographerName;
         //ORDRE DES MEDIAS PAR DEFAUT 
-        photographerMedia.forEach((media, i) => {
+        photographerMedia.forEach((media, i_) => {
 
-
+            const i = i_;
             //s'il c'est une image
             if (media.image) {
                 //Garder que le premier prenom/premiere chaine de caractere, avant l'espace
@@ -160,16 +379,19 @@ request.addEventListener("load", () => {
 
                 <div class="description-medias">
                     <p>${media.title}</p>
+
                     <div class="container-likes">
+                    
                         <p class="like">${media.likes}</p>
-                        <i class="fas fa-heart medias-heart"></i>
+                        <button class="like-button" onclick="moreLike(${i})"><i class="fas fa-heart medias-heart"></i></button>
                     </div>
 
                 </div>
             </section>
             `
         });
-
+        //paragraphe qui contient les likes de chaque media
+        likeNumber = document.querySelectorAll(".like");
         //FILTRAGE DES MEDIAS /CHANGEMENT D ORDRE
         let orderMediasSelect = document.querySelector("#order-medias-select");
         console.log(orderMediasSelect.selectedIndex);
@@ -192,7 +414,7 @@ request.addEventListener("load", () => {
 
                 console.log("1");
                 //ORDRE DATE, plus recente à plus ancienne
-                photographer.sort(function(a, b) {
+                photographerMedia.sort(function(a, b) {
                     return new Date(b.date) - new Date(a.date);
                 });
 
@@ -224,6 +446,8 @@ request.addEventListener("load", () => {
                     //si ce n'est pas une image, afficher le logo
                     imagePath = `images/logo/logo.png`;
                 }
+
+
                 $containerMedias.innerHTML += `
                 <section class="medias-section">
     
@@ -236,9 +460,9 @@ request.addEventListener("load", () => {
                     <div class="description-medias">
                         <p>${media.title}</p>
                         <div class="container-likes">
-                            <button class="like">${media.likes}</button>
-                         
-                        <i class="fas fa-heart medias-heart"></i>
+                            <p class="like">${media.likes}</p>
+                            <button class ="like-button" onclick="moreLike()"><i class="fas fa-heart medias-heart"></i></button>
+
                         </div>
     
                     </div>
@@ -249,29 +473,6 @@ request.addEventListener("load", () => {
 
         });
 
-        //AUGMENTER LES LIKES
-
-        //  numero de like qui est dedans le paragraphe
-
-        // let likeNumber = document.querySelectorAll(".like");
-        // let mediasHeart = document.querySelector(".medias-heart");
-        // let likeNumberTextContent = [];
-        // let likeNumberAddition = [];
-        // mediasHeart.addEventListener("click", (e) => {
-        //     //Prendre le contenu du paragraphe et le stocker dans une nouvelle variable
-        //     likeNumber.forEach(element => {
-
-        //         likeNumberTextContent.push(element.textContent);
-
-        //     });
-        //     likeNumberTextContent.forEach(element => {
-        //         element++;
-        //         likeNumberAddition.push(element);
-        //     });
-        //     console.log(likeNumberAddition);
-        //     console.log(e.target);
-
-        // });
 
 
 
@@ -353,14 +554,14 @@ request.addEventListener("load", () => {
         $modalContainer.innerHTML += `
 
             <div id="modal-content">
-            <button id="close-modal-button"><i class="fas fa-times"></i></button>
+         
             <div id="form-container">
                 <form name="contact" action="index.html" method="get">
-                    <!-- <div id="container-title"> -->
+                  <div id="modal-container-title"> 
                     <h1>Contactez-moi <br /> ${photographerData.name} </h1>
+                    <button id="close-modal-button"><i class="fas fa-times"></i></button>
 
-
-                    <!-- </div> -->
+                     </div>
                     <div class="formData-container">
                         <label for="first-name">Prénom</label><br />
                         <input class="input-text-style" type="text" id="first-name" name="firstName" /><br />

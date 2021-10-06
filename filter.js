@@ -42,6 +42,7 @@ request.addEventListener("load", () => {
 
         //Parcourir le tableau des tags uniques
         //ranger les elements par ordre alphabethique 
+        // onlyOneTag.sort().forEach(tag => {
         onlyOneTag.sort().forEach(tag => {
             //creer une li
             const $li = document.createElement("li");
