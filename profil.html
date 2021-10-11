@@ -32,7 +32,9 @@
         <div id="order-medias-container">
             <label for="order-medias-select">Trier par</label>
             <select name="select" id="order-medias-select">
+            
                 <option value="popular" id="popular">Popularité</option>
+
                 <option value="date" id="date">Date</option>
                 <option value="title" id="title">Titre</option>
             </select>
@@ -46,7 +48,7 @@
         <div id="light-box">
             <div id="container-light-box">
 
-                <button id="close-light-box-button" onclick="closeLightBox()"><i class="fas fa-times"></i></button>
+                <button id="close-light-box-button" onclick="light_Box.close()"><i class="fas fa-times"></i></button>
                 <div>
 
                     <button id="light-box-left-button"><i class="fas fa-chevron-left"></i></button>
@@ -78,9 +80,9 @@
 
     <!--Fichier JS-->
 
-
+    <script src="LightBox.js"></script>
     <script src="profil.js"></script>
-    <script src="modal.js"></script>
+
 
 </body>
 

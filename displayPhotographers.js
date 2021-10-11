@@ -51,7 +51,7 @@ request.addEventListener("load", () => {
             <h2>${name}</h2>
             </a>
             <p class="city-country">${city} , ${country}</p>
-            <p>${tagline}</p>
+            <p class="tagline">${tagline}</p>
             <p class="price">${price}/jour€</p>
             </div>
             ${tagsHTML}
