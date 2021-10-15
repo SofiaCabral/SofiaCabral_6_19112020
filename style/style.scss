@@ -1,516 +1,521 @@
-                                        * {
-                                            list-style-type: none;
-                                            text-decoration: none;
-                                            margin: 0;
-                                            padding: 0;
-                                        }
-                                        
-                                        body {
-                                            font-family: 'DM Sans', sans-serif;
-                                            font-weight: 400;
-                                            margin: 0;
-                                            padding: 0;
-                                            height: 100%;
-                                        }
-                                        
-                                        $first-primary-color: #901C1C;
-                                        $second-primary-color: #D3573C;
-                                        $first-secondary-color: #DB8876;
-                                        $second-secondary-color: #C4C4C4;
-                                        $other-second-secondary: #525252;
-                                        $background-color-tags-buttons: white;
-                                        //HEADER
-                                        #main-header {
-                                            margin: auto;
-                                            width: 90%;
-                                            position: relative;
-                                            #logo {
-                                                padding-top: 30px;
-                                                margin-bottom: 15px;
-                                                height: 30px;
-                                            }
-                                            .tags-container-index {
-                                                // margin: auto;
-                                                // width: 70%;
-                                            }
-                                        }
-                                        
-                                        //tags
-                                        .tags-container {
-                                            display: flex;
-                                            flex-wrap: wrap;
-                                            justify-content: center;
-                                            .tags {
-                                                text-transform: capitalize;
-                                                background-color: $background-color-tags-buttons;
-                                                color: $first-primary-color;
-                                                border: 0.5px solid $second-secondary-color;
-                                                border-radius: 11px;
-                                                font-size: 12px;
-                                                padding: 4px;
-                                                margin: 0 5px 5px 0;
-                                                font-weight: 700;
-                                            }
-                                        }
-                                        
-                                        //INDEX CONTENT
-                                        #page {
-                                            #main-index {
-                                                h1 {
-                                                    position: absolute;
-                                                    top: 43px;
-                                                    right: 15px;
-                                                    font-size: 14px;
-                                                    color: $first-primary-color;
-                                                    font-weight: normal;
-                                                }
-                                                #container-photographers-list {
-                                                    margin-top: 25px;
-                                                    .photographers-list {
-                                                        text-align: center;
-                                                        margin-bottom: 20px;
-                                                        img {
-                                                            width: 180px;
-                                                            height: 180px;
-                                                            object-fit: cover;
-                                                            object-position: center;
-                                                            border-radius: 50%;
-                                                        }
-                                                        .photographers-description {
-                                                            h2 {
-                                                                padding-top: 10px;
-                                                                font-size: 25px;
-                                                                color: $second-primary-color;
-                                                            }
-                                                            .city-country {
-                                                                padding-top: 5px;
-                                                                color: $first-primary-color;
-                                                            }
-                                                            .price {
-                                                                padding: 5px 0 5px 0;
-                                                                color: $second-secondary-color;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        
-                                        //Page de Photgraphers 
-                                        #page-photographer {
-                                            margin: auto;
-                                            width: 90%;
-                                            position: relative;
-                                            #container-personal-informations {
-                                                display: flex;
-                                                justify-content: space-between;
-                                                margin-bottom: 40px;
-                                                h1 {
-                                                    font-size: 28px;
-                                                    color: $second-primary-color;
-                                                }
-                                                #city-country-photographer {
-                                                    font-size: 13px;
-                                                    color: $first-primary-color;
-                                                    padding-bottom: 5px;
-                                                }
-                                                #tagline-photographer {
-                                                    font-size: 13px;
-                                                    color: $other-second-secondary;
-                                                    padding-bottom: 5px;
-                                                }
-                                                #tags-container-photographers {
-                                                    display: flex;
-                                                    #all-tags {
-                                                        text-transform: capitalize;
-                                                        color: $first-primary-color;
-                                                        border: 0.5px solid $second-secondary-color;
-                                                        border-radius: 11px;
-                                                        font-size: 12px;
-                                                        padding: 3px;
-                                                        margin: 0 5px 5px 0;
-                                                    }
-                                                }
-                                                #container-button {
-                                                    position: absolute;
-                                                    bottom: 20px;
-                                                    left: 50%;
-                                                    transform: translateX(-50%);
-                                                    position: fixed;
-                                                    #button-contact {
-                                                        background-color: $first-primary-color;
-                                                        padding: 10px 15px 10px 15px;
-                                                        color: white;
-                                                        border-radius: 5px;
-                                                        font-weight: 500;
-                                                        border: none;
-                                                    }
-                                                }
-                                                #container-picture-profil {
-                                                    #photo-profil {
-                                                        width: 110px;
-                                                        height: 110px;
-                                                        margin-left: -40px;
-                                                        margin-top: -15px;
-                                                        object-fit: cover;
-                                                        object-position: center;
-                                                        border-radius: 50%;
-                                                    }
-                                                }
-                                            }
-                                            #order-medias-container {
-                                                display: none;
-                                            }
-                                            #container-medias {
-                                                .medias-section {
-                                                    margin-bottom: 10px;
-                                                    .image-medias-container {
-                                                        .img-medias {
-                                                            height: 190px;
-                                                            width: 100%;
-                                                            object-fit: cover;
-                                                            border-radius: 5px;
-                                                        }
-                                                    }
-                                                    .description-medias {
-                                                        color: $first-primary-color;
-                                                        font-size: 14px;
-                                                        display: flex;
-                                                        justify-content: space-between;
-                                                        .container-likes {
-                                                            display: flex;
-                                                            align-items: center;
-                                                            .like-button {
-                                                                border: none;
-                                                                background-color: white;
-                                                            }
-                                                            .like {
-                                                                padding-right: 5px;
-                                                            }
-                                                            .medias-heart {
-                                                                color: $first-primary-color;
-                                                                cursor: pointer;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            #light-box {
-                                                display: none;
-                                                position: fixed;
-                                                z-index: 1;
-                                                left: 0;
-                                                top: 0;
-                                                height: 100%;
-                                                width: 100%;
-                                                background-color: white;
-                                                #container-light-box {
-                                                    display: flex;
-                                                    justify-content: center;
-                                                    align-items: center;
-                                                    margin: 50% auto;
-                                                    width: 90%;
-                                                    position: relative;
-                                                    #close-light-box-button {
-                                                        position: absolute;
-                                                        top: 0;
-                                                        right: 25px;
-                                                    }
-                                                    button {
-                                                        // height: 40%;
-                                                        font-size: 18px;
-                                                        background-color: white;
-                                                        border: none;
-                                                        color: #901C1C;
-                                                    }
-                                                    #light-box-image-container {
-                                                        margin: 0 10px 0 10px;
-                                                        width: 70%;
-                                                        img {
-                                                            height: 230px;
-                                                            width: 100%;
-                                                            object-fit: cover;
-                                                            border-radius: 5px;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        
-                                        //ASIDE
-                                        #aside {
-                                            display: none;
-                                        }
-                                        
-                                        //MODAL
-                                        #modal-container {
-                                            display: none;
-                                            position: fixed;
-                                            z-index: 1;
-                                            left: 0;
-                                            top: 0;
-                                            height: 100%;
-                                            width: 100%;
-                                            #modal-content {
-                                                background-color: white;
-                                                height: 100%;
-                                                //form
-                                                #form-container {
-                                                    background-color: $first-secondary-color;
-                                                    height: 100%;
-                                                    border-radius: 5px;
-                                                    #modal-container-title {
-                                                        display: flex;
-                                                        justify-content: space-between;
-                                                        h1 {
-                                                            font-size: 34px;
-                                                        }
-                                                        #close-modal-button {
-                                                            background-color: $first-secondary-color;
-                                                            border: none;
-                                                            color: white;
-                                                            font-size: 30px;
-                                                            right: 20px;
-                                                            top: 15px;
-                                                            align-self: flex-start;
-                                                        }
-                                                    }
-                                                    //champs du formulaire
-                                                    .formData-container {
-                                                        margin-top: 20px;
-                                                        margin-bottom: 20px;
-                                                        label {
-                                                            font-size: 24px;
-                                                            margin-bottom: 5px;
-                                                        }
-                                                        input {
-                                                            border-radius: 5px;
-                                                            border: none;
-                                                            height: 50px;
-                                                            width: 100%;
-                                                            outline: inherit;
-                                                            font-size: 16px;
-                                                        }
-                                                        textarea {
-                                                            height: 80px;
-                                                            width: 100%;
-                                                            border-radius: 5px;
-                                                            outline: inherit;
-                                                        }
-                                                    }
-                                                    //button d'envoi
-                                                    #button-submit-container {
-                                                        text-align: center;
-                                                        #button-submit {
-                                                            background-color: $first-primary-color;
-                                                            padding: 10px 40px 10px 40px;
-                                                            color: white;
-                                                            border-radius: 5px;
-                                                            font-weight: 500;
-                                                            border: none;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        
-                                        @media all and (min-width: 453px) and (max-width:1170px) {
-                                            #page-photographer {
-                                                .img-medias {
-                                                    height: 500px;
-                                                }
-                                            }
-                                        }
-                                        
-                                        //MODE TABLETTE 
-                                        @media all and (min-width: 1171px) {
-                                            //HEADER
-                                            #main-header {
-                                                padding-top: 20px;
-                                                width: 73%;
-                                                // flex-wrap: wrap;
-                                                // justify-content: space-between;
-                                                //logo
-                                                #logo {
-                                                    // background-color: lightcoral;
-                                                    padding-top: 0;
-                                                    margin-bottom: 0;
-                                                    // margin-left: 30px;
-                                                    height: 35px;
-                                                }
-                                                //navigation
-                                                nav {
-                                                    margin: -35px;
-                                                }
-                                            }
-                                            //Nos photographes Titre
-                                            #page {
-                                                #main-index {
-                                                    h1 {
-                                                        top: 20px;
-                                                        right: 13%;
-                                                        font-size: 20px;
-                                                        color: $first-primary-color;
-                                                        font-weight: 500;
-                                                    }
-                                                    //Afficha de tous les photographers
-                                                    #container-photographers-list {
-                                                        margin-top: 5%;
-                                                        display: flex;
-                                                        flex-wrap: wrap;
-                                                        justify-content: center;
-                                                        .photographers-list {
-                                                            margin-top: 2%;
-                                                            width: 30%;
-                                                            margin-bottom: 15px;
-                                                            img {
-                                                                width: 120px;
-                                                                height: 120px;
-                                                            }
-                                                            .photographers-description {
-                                                                h2 {
-                                                                    padding-top: 0;
-                                                                    font-weight: 500;
-                                                                    font-size: 22px;
-                                                                }
-                                                                .city-country {
-                                                                    font-size: 14px;
-                                                                    padding-top: 0;
-                                                                    color: $first-primary-color;
-                                                                }
-                                                                .tagline {
-                                                                    font-size: 14px;
-                                                                }
-                                                                .price {
-                                                                    padding: 0 0 5px 0;
-                                                                    font-size: 12px;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            //PAGE D'UN PHOTOGRAPHE
-                                            #page-photographer {
-                                                #container-personal-informations {
-                                                    position: relative;
-                                                    //informations personnalles
-                                                    h1 {
-                                                        font-size: 50px;
-                                                    }
-                                                    #city-country-photographer {
-                                                        font-size: 25px;
-                                                        padding-bottom: 15px;
-                                                    }
-                                                    #tagline-photographer {
-                                                        font-size: 16px;
-                                                        padding-bottom: 10px;
-                                                    }
-                                                    #all-tags {
-                                                        font-size: 16px;
-                                                    }
-                                                    //button contactez moi
-                                                    #container-button {
-                                                        position: absolute;
-                                                        left: 340px;
-                                                        top: 10px;
-                                                        button {
-                                                            padding: 15px 10px 15px 10px;
-                                                        }
-                                                    }
-                                                    //photo de profil
-                                                    #container-picture-profil {
-                                                        img {
-                                                            width: 150px;
-                                                            height: 150px;
-                                                        }
-                                                    }
-                                                }
-                                                #order-medias-container {
-                                                    display: block;
-                                                    margin-bottom: 50px;
-                                                    label {
-                                                        font-weight: 700;
-                                                    }
-                                                    select {
-                                                        background-color: #901C1C;
-                                                        border: none;
-                                                        border-radius: 5px;
-                                                        color: white;
-                                                        padding: 10px 20px 10px 20px;
-                                                    }
-                                                }
-                                                #container-medias {
-                                                    display: flex;
-                                                    flex-wrap: wrap;
-                                                    justify-content: space-between;
-                                                    .medias-section {
-                                                        width: 30%;
-                                                        .image-medias-container {
-                                                            .img-medias {
-                                                                height: 250px;
-                                                            }
-                                                        }
-                                                        .description-medias {
-                                                            .like {
-                                                                font-size: 17px;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            #aside {
-                                                display: block;
-                                                position: fixed;
-                                                bottom: 0;
-                                                right: 20px;
-                                                display: flex;
-                                                justify-content: space-between;
-                                                background-color: $first-secondary-color;
-                                                border-radius: 5px;
-                                                width: 25%;
-                                                padding: 15px;
-                                                text-align: center;
-                                                #container-aside-likes {
-                                                    display: flex;
-                                                    font-weight: 700;
-                                                    font-size: 16px;
-                                                    p {
-                                                        margin-right: 5px;
-                                                    }
-                                                }
-                                                #container-aside-price {
-                                                    font-weight: 700;
-                                                    font-size: 16px;
-                                                }
-                                            }
-                                            //MODAL
-                                            #modal-container {
-                                                // background-color: transparent;
-                                                #modal-content {
-                                                    display: flex;
-                                                    align-items: center;
-                                                    justify-content: center;
-                                                    background-color: transparent;
-                                                    #form-container {
-                                                        width: 30%;
-                                                        padding: 20px;
-                                                        height: 80%;
-                                                        padding: 20px;
-                                                        //button d'envoi
-                                                        #modal-container-title {
-                                                            margin-bottom: 20px;
-                                                        }
-                                                        #button-submit-container {
-                                                            text-align: inherit;
-                                                        }
-                                                        .formData-container {
-                                                            margin: 0;
-                                                            textarea {
-                                                                margin-bottom: 10px;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
+                                       * {
+                                           list-style-type: none;
+                                           text-decoration: none;
+                                           margin: 0;
+                                           padding: 0;
+                                       }
+                                       
+                                       body {
+                                           font-family: 'DM Sans', sans-serif;
+                                           font-weight: 400;
+                                       }
+                                       
+                                       $first-primary-color: #901C1C;
+                                       //correction couleur trop haute
+                                       $second-primary-color: #C34B2C;
+                                       $first-secondary-color: #DB8876;
+                                       //correction trop bas  
+                                       $second-secondary-color: #737373;
+                                       $other-second-secondary: #525252;
+                                       $background-color-tags-buttons: white;
+                                       //HEADER
+                                       #main-header {
+                                           margin: auto;
+                                           width: 90%;
+                                           position: relative;
+                                           #logo {
+                                               padding-top: 30px;
+                                               margin-bottom: 15px;
+                                               height: 30px;
+                                           }
+                                       }
+                                       
+                                       //tags
+                                       .tags-container {
+                                           display: flex;
+                                           flex-wrap: wrap;
+                                           justify-content: center;
+                                           .tags {
+                                               text-transform: capitalize;
+                                               background-color: $background-color-tags-buttons;
+                                               color: $first-primary-color;
+                                               border: 0.5px solid $second-secondary-color;
+                                               border-radius: 11px;
+                                               font-size: 12px;
+                                               padding: 4px;
+                                               margin: 0 5px 5px 0;
+                                               font-weight: 700;
+                                           }
+                                       }
+                                       
+                                       //INDEX CONTENT
+                                       #page {
+                                           margin: 0;
+                                           #main-index {
+                                               h1 {
+                                                   position: absolute;
+                                                   top: 43px;
+                                                   right: 15px;
+                                                   font-size: 14px;
+                                                   color: $first-primary-color;
+                                                   font-weight: normal;
+                                               }
+                                               #container-photographers-list {
+                                                   padding-top: 20px;
+                                                   margin: 0;
+                                                   .photographers-list {
+                                                       text-align: center;
+                                                       margin-bottom: 20px;
+                                                       img {
+                                                           width: 180px;
+                                                           height: 180px;
+                                                           object-fit: cover;
+                                                           object-position: center;
+                                                           border-radius: 50%;
+                                                       }
+                                                       .photographers-description {
+                                                           h2 {
+                                                               padding-top: 10px;
+                                                               font-size: 25px;
+                                                               color: $second-primary-color;
+                                                           }
+                                                           .city-country {
+                                                               padding-top: 5px;
+                                                               color: $first-primary-color;
+                                                           }
+                                                           .price {
+                                                               padding: 5px 0 5px 0;
+                                                               color: $second-secondary-color;
+                                                           }
+                                                       }
+                                                   }
+                                               }
+                                           }
+                                       }
+                                       
+                                       //Page de Photgraphers 
+                                       #page-photographer {
+                                           margin: auto;
+                                           width: 90%;
+                                           position: relative;
+                                           #container-personal-informations {
+                                               display: flex;
+                                               justify-content: space-between;
+                                               margin-bottom: 40px;
+                                               h1 {
+                                                   font-size: 28px;
+                                                   color: $second-primary-color;
+                                               }
+                                               #city-country-photographer {
+                                                   font-size: 13px;
+                                                   color: $first-primary-color;
+                                                   padding-bottom: 5px;
+                                               }
+                                               #tagline-photographer {
+                                                   font-size: 13px;
+                                                   color: $other-second-secondary;
+                                                   padding-bottom: 5px;
+                                               }
+                                               #tags-container-photographers {
+                                                   display: flex;
+                                                   #all-tags {
+                                                       text-transform: capitalize;
+                                                       color: $first-primary-color;
+                                                       border: 0.5px solid $second-secondary-color;
+                                                       border-radius: 11px;
+                                                       font-size: 12px;
+                                                       padding: 3px;
+                                                       margin: 0 5px 5px 0;
+                                                   }
+                                               }
+                                               #container-button {
+                                                   position: absolute;
+                                                   bottom: 20px;
+                                                   left: 50%;
+                                                   transform: translateX(-50%);
+                                                   position: fixed;
+                                                   #button-contact {
+                                                       background-color: $first-primary-color;
+                                                       padding: 10px 15px 10px 15px;
+                                                       color: white;
+                                                       border-radius: 5px;
+                                                       font-weight: 500;
+                                                       border: none;
+                                                   }
+                                               }
+                                               #container-picture-profil {
+                                                   #photo-profil {
+                                                       width: 110px;
+                                                       height: 110px;
+                                                       margin-left: -40px;
+                                                       margin-top: -15px;
+                                                       object-fit: cover;
+                                                       object-position: center;
+                                                       border-radius: 50%;
+                                                   }
+                                               }
+                                           }
+                                           #order-medias-container {
+                                               display: none;
+                                           }
+                                           #container-medias {
+                                               .medias-section {
+                                                   margin-bottom: 10px;
+                                                   .image-medias-container {
+                                                       width: 100%;
+                                                       .img-medias {
+                                                           height: 190px;
+                                                           width: 100%;
+                                                           object-fit: cover;
+                                                           border-radius: 5px;
+                                                       }
+                                                   }
+                                                   .description-medias {
+                                                       color: $first-primary-color;
+                                                       font-size: 14px;
+                                                       display: flex;
+                                                       justify-content: space-between;
+                                                       .container-likes {
+                                                           display: flex;
+                                                           align-items: center;
+                                                           .like-button {
+                                                               border: none;
+                                                               background-color: white;
+                                                           }
+                                                           .like {
+                                                               padding-right: 5px;
+                                                           }
+                                                           .medias-heart {
+                                                               color: $first-primary-color;
+                                                               cursor: pointer;
+                                                           }
+                                                       }
+                                                   }
+                                               }
+                                           }
+                                           #light-box {
+                                               display: none;
+                                               position: fixed;
+                                               z-index: 1;
+                                               left: 0;
+                                               top: 0;
+                                               height: 100%;
+                                               width: 100%;
+                                               background-color: white;
+                                               #light-box-content {
+                                                   display: flex;
+                                                   justify-content: center;
+                                                   align-items: center;
+                                                   height: 100%;
+                                                   width: 100%;
+                                                   #container-light-box {
+                                                       display: flex;
+                                                       justify-content: center;
+                                                       align-items: center;
+                                                       // margin: 50% auto;
+                                                       // width: 90%;
+                                                       position: relative;
+                                                       #close-light-box-button {
+                                                           position: absolute;
+                                                           top: 0;
+                                                           right: 25px;
+                                                       }
+                                                       button {
+                                                           // height: 40%;
+                                                           font-size: 18px;
+                                                           background-color: white;
+                                                           border: none;
+                                                           color: #901C1C;
+                                                       }
+                                                       #light-box-image-container {
+                                                           margin: 0 10px 0 10px;
+                                                           width: 70%;
+                                                           img {
+                                                               height: 60%;
+                                                               width: 100%;
+                                                               object-fit: cover;
+                                                               border-radius: 5px;
+                                                           }
+                                                       }
+                                                   }
+                                               }
+                                           }
+                                       }
+                                       
+                                       //ASIDE
+                                       #aside {
+                                           display: none;
+                                       }
+                                       
+                                       //MODAL
+                                       #modal-container {
+                                           display: none;
+                                           position: fixed;
+                                           z-index: 1;
+                                           left: 0;
+                                           top: 0;
+                                           height: 100%;
+                                           width: 100%;
+                                           #modal-content {
+                                               background-color: white;
+                                               height: 100%;
+                                               //form
+                                               #form-container {
+                                                   background-color: $first-secondary-color;
+                                                   height: 100%;
+                                                   padding: 20px;
+                                                   #modal-container-title {
+                                                       display: flex;
+                                                       justify-content: space-between;
+                                                       h1 {
+                                                           font-size: 34px;
+                                                       }
+                                                       #close-modal-button {
+                                                           background-color: $first-secondary-color;
+                                                           border: none;
+                                                           color: white;
+                                                           font-size: 30px;
+                                                           right: 20px;
+                                                           top: 15px;
+                                                           align-self: flex-start;
+                                                       }
+                                                   }
+                                                   //champs du formulaire
+                                                   .formData-container {
+                                                       margin-top: 20px;
+                                                       margin-bottom: 20px;
+                                                       label {
+                                                           font-size: 24px;
+                                                           margin-bottom: 5px;
+                                                       }
+                                                       input {
+                                                           border-radius: 5px;
+                                                           border: none;
+                                                           height: 50px;
+                                                           width: 100%;
+                                                           outline: inherit;
+                                                           font-size: 16px;
+                                                       }
+                                                       textarea {
+                                                           height: 80px;
+                                                           width: 100%;
+                                                           border-radius: 5px;
+                                                           outline: inherit;
+                                                       }
+                                                   }
+                                                   //button d'envoi
+                                                   #button-submit-container {
+                                                       text-align: center;
+                                                       #button-submit {
+                                                           background-color: $first-primary-color;
+                                                           padding: 10px 40px 10px 40px;
+                                                           color: white;
+                                                           border-radius: 5px;
+                                                           font-weight: 500;
+                                                           border: none;
+                                                       }
+                                                   }
+                                               }
+                                           }
+                                       }
+                                       
+                                       @media all and (min-width: 453px) and (max-width:1170px) {
+                                           #page-photographer {
+                                               .img-medias {
+                                                   height: 500px;
+                                               }
+                                           }
+                                       }
+                                       
+                                       //MODE TABLETTE 
+                                       @media all and (min-width: 1171px) {
+                                           //HEADER
+                                           #main-header {
+                                               padding-top: 20px;
+                                               width: 73%;
+                                               //logo
+                                               #logo {
+                                                   padding-top: 0;
+                                                   margin-bottom: 0;
+                                                   height: 35px;
+                                               }
+                                               //navigation
+                                               nav {
+                                                   margin: -35px;
+                                               }
+                                           }
+                                           //Nos photographes Titre
+                                           #page {
+                                               #main-index {
+                                                   h1 {
+                                                       top: 20px;
+                                                       right: 13%;
+                                                       font-size: 20px;
+                                                       color: $first-primary-color;
+                                                       font-weight: 500;
+                                                   }
+                                                   //Afficha de tous les photographers
+                                                   #container-photographers-list {
+                                                       margin-top: 5%;
+                                                       display: flex;
+                                                       flex-wrap: wrap;
+                                                       justify-content: center;
+                                                       .photographers-list {
+                                                           margin-top: 2%;
+                                                           width: 30%;
+                                                           margin-bottom: 15px;
+                                                           img {
+                                                               width: 120px;
+                                                               height: 120px;
+                                                           }
+                                                           .photographers-description {
+                                                               h2 {
+                                                                   padding-top: 0;
+                                                                   font-weight: 500;
+                                                                   font-size: 22px;
+                                                               }
+                                                               .city-country {
+                                                                   font-size: 14px;
+                                                                   padding-top: 0;
+                                                                   color: $first-primary-color;
+                                                               }
+                                                               .tagline {
+                                                                   font-size: 14px;
+                                                               }
+                                                               .price {
+                                                                   padding: 0 0 5px 0;
+                                                                   font-size: 12px;
+                                                               }
+                                                           }
+                                                       }
+                                                   }
+                                               }
+                                           }
+                                           //PAGE D'UN PHOTOGRAPHE
+                                           #page-photographer {
+                                               #container-personal-informations {
+                                                   position: relative;
+                                                   //informations personnalles
+                                                   h1 {
+                                                       font-size: 32px;
+                                                       font-weight: 400;
+                                                   }
+                                                   #city-country-photographer {
+                                                       font-size: 16px;
+                                                       padding-bottom: 15px;
+                                                   }
+                                                   #tagline-photographer {
+                                                       font-size: 12px;
+                                                       padding-bottom: 10px;
+                                                   }
+                                                   #all-tags {
+                                                       font-size: 16px;
+                                                   }
+                                                   //button contactez moi
+                                                   #container-button {
+                                                       position: absolute;
+                                                       left: 340px;
+                                                       top: 10px;
+                                                       button {
+                                                           padding: 15px 10px 15px 10px;
+                                                       }
+                                                   }
+                                                   //photo de profil
+                                                   #container-picture-profil {
+                                                       img {
+                                                           width: 150px;
+                                                           height: 150px;
+                                                       }
+                                                   }
+                                               }
+                                               #order-medias-container {
+                                                   display: block;
+                                                   margin-bottom: 50px;
+                                                   label {
+                                                       font-weight: 700;
+                                                   }
+                                                   select {
+                                                       background-color: #901C1C;
+                                                       border: none;
+                                                       border-radius: 5px;
+                                                       color: white;
+                                                       padding: 10px 20px 10px 20px;
+                                                   }
+                                               }
+                                               #container-medias {
+                                                   display: flex;
+                                                   flex-wrap: wrap;
+                                                   justify-content: space-between;
+                                                   .medias-section {
+                                                       width: 30%;
+                                                       .image-medias-container {
+                                                           .img-medias {
+                                                               height: 250px;
+                                                           }
+                                                       }
+                                                       .description-medias {
+                                                           .like {
+                                                               font-size: 17px;
+                                                           }
+                                                       }
+                                                   }
+                                               }
+                                           }
+                                           #aside {
+                                               display: block;
+                                               position: fixed;
+                                               bottom: 0;
+                                               right: 20px;
+                                               display: flex;
+                                               justify-content: space-between;
+                                               background-color: $first-secondary-color;
+                                               border-radius: 5px;
+                                               width: 25%;
+                                               padding: 15px;
+                                               text-align: center;
+                                               #container-aside-likes {
+                                                   display: flex;
+                                                   font-weight: 700;
+                                                   font-size: 16px;
+                                                   p {
+                                                       margin-right: 5px;
+                                                   }
+                                               }
+                                               #container-aside-price {
+                                                   font-weight: 700;
+                                                   font-size: 16px;
+                                               }
+                                           }
+                                           //MODAL
+                                           #modal-container {
+                                               // background-color: transparent;
+                                               #modal-content {
+                                                   display: flex;
+                                                   align-items: center;
+                                                   justify-content: center;
+                                                   background-color: transparent;
+                                                   #form-container {
+                                                       width: 30%;
+                                                       padding: 20px;
+                                                       height: 80%;
+                                                       padding: 20px;
+                                                       //button d'envoi
+                                                       #modal-container-title {
+                                                           margin-bottom: 20px;
+                                                       }
+                                                       #button-submit-container {
+                                                           text-align: inherit;
+                                                       }
+                                                       .formData-container {
+                                                           margin: 0;
+                                                           textarea {
+                                                               margin-bottom: 10px;
+                                                           }
+                                                       }
+                                                   }
+                                               }
+                                           }
+                                           #light-box-content {
+                                               height: 40%;
+                                           }
+                                       }

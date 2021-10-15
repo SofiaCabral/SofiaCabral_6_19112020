@@ -1,44 +1,40 @@
 //DOM ELEMENTS
-
-
+//header qui contient les informations d'un photographer
 const $containerPersonalInformations = document.querySelector("#container-personal-informations");
+//article qui contient les medias
 let $containerMedias = document.querySelector("#container-medias");
-const $aside = document.querySelector("#aside");
+//div qui contient toute la lightbox
+const lightBox = document.querySelector("#light-box");
+//image de la lightbox
+const $imageLightBox = document.querySelector("#light-box img");
+//bouton pour fermer lightbox
 const $closeLightBox = document.querySelector("#close-light-box");
-let light_Box;
+//bouton pour aller à droite (lightbox)
+const lightBoxRightButton = document.querySelector('#light-box-right-button');
+//bouton pour aller à gauche (lightbox)
+const lightBoxLeftButton = document.querySelector('#light-box-left-button');
+//aside 
+const $aside = document.querySelector("#aside");
 
+let light_Box;
 //Pour stocker les donnees personnelles d'un photographer 
 let photographerMedia;
-
 //Pour stocker medias d'un photographer 
 let photographerData;
-
 //balise image dedans la light box 
-const $imageLightBox = document.querySelector("#light-box img");
-const lightBox = document.querySelector("#light-box");
 
 
-const lightBoxRightButton = document.querySelector('#light-box-right-button');
-const lightBoxLeftButton = document.querySelector('#light-box-left-button');
 
-//on prends l'index 
-
-// touches fléchées pour naviguer entre les médias. 
 
 // AUGMENTER LES LIKES
-
 function moreLike(i) {
-
     //ajouter un like
     photographerMedia[i].likes++;
     //afficher dedans le paragraphe 
     likeNumber[i].textContent = photographerMedia[i].likes;
-
 }
 
-
-
-//requete$containerPersonalInformations
+//REQUETE
 let requestURL = "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Front-End+V2/P5+Javascript+%26+Accessibility/FishEyeData.json";
 let request = new XMLHttpRequest();
 request.open("GET", requestURL);
@@ -46,29 +42,24 @@ request.send();
 
 //au chargerment de la page
 request.addEventListener("load", () => {
-    data = JSON.parse(request.response); //transgormer json en js en stocker en data
+    data = JSON.parse(request.response); //transFormer json en js en stocker en data
     if (request.status == 200 || request.status == 201) { //si tout se passe bien
         //Récupearation de l'id dans l'url
         const idURL = window.location.search;
         //enlever le ? et garder que l'id
         const onlyId = idURL.slice(1);
-        // console.log(onlyId);
         //Selectionner photographe en fonction de l'id du url
         //find permet de recuperer le premier element
         photographerData = data.photographers.find((dataOnePhotographer) => dataOnePhotographer.id == onlyId);
-        console.log(photographerData);
-        let tagsHTML = `<ul id="tags-container-photographers">`;
 
-        //affichage des tags
+        //prendre les tags du photographer
+        let tagsHTML = `<ul id="tags-container-photographers">`;
         photographerData.tags.forEach(tag => {
             tagsHTML += `<li id="all-tags">#${tag}</li>`
         });
-
-        //peut etre pour pas écraser le resultat de l'autre variable
-        //ul + </ul>
         tagsHTML += `</ul>`;
 
-        //affichage des coordonnees des photographers
+        //AFFICHAGE DES COORDONNEES DU PHOTOGRAPHE
         $containerPersonalInformations.innerHTML = `
         <div id="photographer-description">
         <h1>${photographerData.name}</h1>
@@ -78,7 +69,7 @@ request.addEventListener("load", () => {
     </div>
 
     <div id="container-button">
-    <button id="button-contact">Contactez-Moi</button>
+    <button type="button" id="button-contact">Contactez-Moi</button>
     </div>
 
  <div id="container-picture-profil">
@@ -86,16 +77,16 @@ request.addEventListener("load", () => {
    </div>     
         `
 
-        //trouver les id du photographer sur les media du json qui correspond a l'id recupere dans l'url
+        //trouver les id du photographer sur les media du json qui correspondondent  a l'id recupere dans l'url
         //filter permet de recuperer plusieurs elemets 
         photographerMedia = data.media.filter((dataOnephotographer) => dataOnephotographer.photographerId == onlyId);
 
-
+        //pour stocker les lien vers les images
         let imagePath;
+        //pour stocker le dossier de chaque photographe
         let folderPhotographerName;
         //ORDRE DES MEDIAS PAR DEFAUT 
         photographerMedia.forEach((media, i_) => {
-
             const i = i_;
             //s'il c'est une image
             if (media.image) {
@@ -103,16 +94,17 @@ request.addEventListener("load", () => {
                 folderPhotographerName = photographerData.name.split(" ")[0];
                 //liens vers l'image
                 imagePath = `images/${folderPhotographerName}/${media.image}`;
-                console.log(imagePath);
             } else {
                 //si ce n'est pas une image, afficher le logo
                 imagePath = `images/logo/logo.png`;
             }
+            //AFFICHAGE DES MEDIAS 
+            //light_Box.display(${i}) pour ouvir la lightbox
+            //moreLike(${i})) pour augmenter le numero de like
             $containerMedias.innerHTML += `
             <section class="medias-section">
 
                 <div class="image-medias-container">
-                <!--quand on clique sur l'image, on declence la function pour afficher la light box -->
                    <img class="img-medias" src="${imagePath}" alt="" onclick="light_Box.display(${i})">
                 </div>
 
@@ -122,7 +114,7 @@ request.addEventListener("load", () => {
                     <div class="container-likes">
                     
                         <p class="like">${media.likes}</p>
-                        <button class="like-button" onclick="moreLike(${i})"><i class="fas fa-heart medias-heart"></i></button>
+                        <button type="button" alt="coeur pour mettre un j'aime" class="like-button" onclick="moreLike(${i})"><i class="fas fa-heart medias-heart"></i></button>
                     </div>
 
                 </div>
@@ -131,50 +123,36 @@ request.addEventListener("load", () => {
         });
         //paragraphe qui contient les likes de chaque media
         likeNumber = document.querySelectorAll(".like");
-        //FILTRAGE DES MEDIAS /CHANGEMENT D ORDRE
-        let orderMediasSelect = document.querySelector("#order-medias-select");
-        console.log(orderMediasSelect.selectedIndex);
-        orderMediasSelect.addEventListener("change", () => {
-            $containerMedias.innerHTML = "";
 
-            //POPULARITE 
+        //FILTRAGE DES MEDIAS /CHANGEMENT D ORDRE
+        //select 
+        let orderMediasSelect = document.querySelector("#order-medias-select");
+        orderMediasSelect.addEventListener("change", () => {
+            //vider le contenu
+            $containerMedias.innerHTML = "";
+            //ORDRE DES MEDIAS PAR POPULARITE
             if (orderMediasSelect.selectedIndex == 0) {
-                console.log('0');
                 //ORDRE POPULARITE plus de likes à moins
                 photographerMedia.sort(function(a, b) {
                     return b.likes - a.likes;
                 });
-
-
-
             }
-            //DATE 
+            //ORDRE DES MEDIAS PAR DATE 
             if (orderMediasSelect.selectedIndex == 1) {
-
-                console.log("1");
                 //ORDRE DATE, plus recente à plus ancienne
                 photographerMedia.sort(function(a, b) {
                     return new Date(b.date) - new Date(a.date);
                 });
-
-
             }
-            //TITRE
+            //ORDRE DES MEDIAS PAR TITRE
             if (orderMediasSelect.selectedIndex == 2) {
-
-                console.log("2");
                 //ORDRE ALPHABETIQUE 
                 photographerMedia.sort(function(a, b) {
                     return a.title.localeCompare(b.title);
                 });
-
-
             }
-
-
+            //AFFICHAGE DES MEDIAS 
             photographerMedia.forEach(media => {
-
-
                 //s'il c'est une image
                 if (media.image) {
                     //Garder que le premier prenom/premiere chaine de caractere, avant l'espace
@@ -185,8 +163,6 @@ request.addEventListener("load", () => {
                     //si ce n'est pas une image, afficher le logo
                     imagePath = `images/logo/logo.png`;
                 }
-
-
                 $containerMedias.innerHTML += `
                 <section class="medias-section">
     
@@ -200,7 +176,7 @@ request.addEventListener("load", () => {
                         <p>${media.title}</p>
                         <div class="container-likes">
                             <p class="like">${media.likes}</p>
-                            <button class ="like-button" onclick="moreLike()"><i class="fas fa-heart medias-heart"></i></button>
+                            <button type="button" class ="like-button" onclick="moreLike()"><i class="fas fa-heart medias-heart"></i></button>
 
                         </div>
     
@@ -208,22 +184,16 @@ request.addEventListener("load", () => {
                 </section>
                 `
             });
-
-
         });
-
-
 
         //NUMERO TOTAL DE LIKES 
         //tableau qui contiendra tous les likes
         let likesTable = [];
-        // let like = document.querySelector(".medias-heart");
-        //parcourir le tableau
+        //parcourir le tableau des medias
         photographerMedia.forEach(media => {
             //ajouter les likes dans le tableau
             likesTable.push(media.likes);
         });
-
 
         // tableau pour le total de likes
         let totalLikes = 0;
@@ -236,9 +206,7 @@ request.addEventListener("load", () => {
         });
 
 
-
-
-
+        //ASIDE
         $aside.innerHTML += `     
             <div id="container-aside-likes">
             <p>${totalLikes}</p>
@@ -254,16 +222,15 @@ request.addEventListener("load", () => {
             //MODAL
             //conteneur modal 
         const $modalContainer = document.querySelector("#modal-container");
-
+        //Affichage du contenu de la modal
         $modalContainer.innerHTML += `
-
             <div id="modal-content">
          
             <div id="form-container">
                 <form class="form">
                   <div id="modal-container-title"> 
                     <h1>Contactez-moi <br /> ${photographerData.name} </h1>
-                    <button id="close-modal-button"><i class="fas fa-times"></i></button>
+                    <button  type="button"id="close-modal-button"><i class="fas fa-times"></i></button>
 
                      </div>
                     <div class="formData-container">
@@ -293,15 +260,14 @@ request.addEventListener("load", () => {
         </div>
         `
 
-
         //BOUTON CONTACT
-        // button contactez moi
+        //button contactez moi
         const buttonContact = document.querySelector("#button-contact");
         //toute la modal
         const modalContainer = document.querySelector("#modal-container");
-        //button pour fermer
+        //button pour fermer la modal
         const closeModalButton = document.querySelector("#close-modal-button");
-        const form = document.querySelector(".form");
+
         //Evenement sur le bouton contactez moi
         buttonContact.addEventListener("click", openModal);
 
@@ -316,33 +282,27 @@ request.addEventListener("load", () => {
         function closeModal() {
             modalContainer.style.display = "none";
         }
-
-
-        //afficher le resultat sur les logs
-        //button sbmit
-        const buttonSubmit = document.querySelector("#button-submit");
+        //PRENDRE VALEURS ET AFFICHER SUR LA CONSOLE
+        //form  
+        const form = document.querySelector(".form");
+        //prenom
         const firstName = document.querySelector("#first-name");
+        //nom        
         const last = document.querySelector("#last");
+        //email
         const email = document.querySelector("#email");
-        //evenement sur le bouton submit
+
         form.addEventListener('submit', getValue);
 
-        //fonction de validation de formulaire
         function getValue(e) {
             e.preventDefault();
             //Affichage des values sur la console
             console.log(firstName.value);
             console.log(last.value);
             console.log(email.value);
-
-
         }
 
-
-
-
-
-
+        //LIGHTBOX
         light_Box = new LightBox(photographerData, photographerMedia, $imageLightBox, lightBox, lightBoxRightButton, lightBoxLeftButton);
 
 

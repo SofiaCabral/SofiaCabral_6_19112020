@@ -8,9 +8,6 @@
 body {
   font-family: 'DM Sans', sans-serif;
   font-weight: 400;
-  margin: 0;
-  padding: 0;
-  height: 100%;
 }
 
 #main-header {
@@ -40,12 +37,16 @@ body {
   text-transform: capitalize;
   background-color: white;
   color: #901C1C;
-  border: 0.5px solid #C4C4C4;
+  border: 0.5px solid #737373;
   border-radius: 11px;
   font-size: 12px;
   padding: 4px;
   margin: 0 5px 5px 0;
   font-weight: 700;
+}
+
+#page {
+  margin: 0;
 }
 
 #page #main-index h1 {
@@ -58,7 +59,8 @@ body {
 }
 
 #page #main-index #container-photographers-list {
-  margin-top: 25px;
+  padding-top: 20px;
+  margin: 0;
 }
 
 #page #main-index #container-photographers-list .photographers-list {
@@ -79,7 +81,7 @@ body {
 #page #main-index #container-photographers-list .photographers-list .photographers-description h2 {
   padding-top: 10px;
   font-size: 25px;
-  color: #D3573C;
+  color: #C34B2C;
 }
 
 #page #main-index #container-photographers-list .photographers-list .photographers-description .city-country {
@@ -89,7 +91,7 @@ body {
 
 #page #main-index #container-photographers-list .photographers-list .photographers-description .price {
   padding: 5px 0 5px 0;
-  color: #C4C4C4;
+  color: #737373;
 }
 
 #page-photographer {
@@ -110,7 +112,7 @@ body {
 
 #page-photographer #container-personal-informations h1 {
   font-size: 28px;
-  color: #D3573C;
+  color: #C34B2C;
 }
 
 #page-photographer #container-personal-informations #city-country-photographer {
@@ -134,7 +136,7 @@ body {
 #page-photographer #container-personal-informations #tags-container-photographers #all-tags {
   text-transform: capitalize;
   color: #901C1C;
-  border: 0.5px solid #C4C4C4;
+  border: 0.5px solid #737373;
   border-radius: 11px;
   font-size: 12px;
   padding: 3px;
@@ -177,6 +179,10 @@ body {
 
 #page-photographer #container-medias .medias-section {
   margin-bottom: 10px;
+}
+
+#page-photographer #container-medias .medias-section .image-medias-container {
+  width: 100%;
 }
 
 #page-photographer #container-medias .medias-section .image-medias-container .img-medias {
@@ -232,7 +238,7 @@ body {
   background-color: white;
 }
 
-#page-photographer #light-box #container-light-box {
+#page-photographer #light-box #light-box-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -242,31 +248,43 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 50% auto;
-  width: 90%;
+  height: 100%;
+  width: 100%;
+}
+
+#page-photographer #light-box #light-box-content #container-light-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
 }
 
-#page-photographer #light-box #container-light-box #close-light-box-button {
+#page-photographer #light-box #light-box-content #container-light-box #close-light-box-button {
   position: absolute;
   top: 0;
   right: 25px;
 }
 
-#page-photographer #light-box #container-light-box button {
+#page-photographer #light-box #light-box-content #container-light-box button {
   font-size: 18px;
   background-color: white;
   border: none;
   color: #901C1C;
 }
 
-#page-photographer #light-box #container-light-box #light-box-image-container {
+#page-photographer #light-box #light-box-content #container-light-box #light-box-image-container {
   margin: 0 10px 0 10px;
   width: 70%;
 }
 
-#page-photographer #light-box #container-light-box #light-box-image-container img {
-  height: 230px;
+#page-photographer #light-box #light-box-content #container-light-box #light-box-image-container img {
+  height: 60%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -295,7 +313,7 @@ body {
 #modal-container #modal-content #form-container {
   background-color: #DB8876;
   height: 100%;
-  border-radius: 5px;
+  padding: 20px;
 }
 
 #modal-container #modal-content #form-container #modal-container-title {
@@ -428,14 +446,15 @@ body {
     position: relative;
   }
   #page-photographer #container-personal-informations h1 {
-    font-size: 50px;
+    font-size: 32px;
+    font-weight: 400;
   }
   #page-photographer #container-personal-informations #city-country-photographer {
-    font-size: 25px;
+    font-size: 16px;
     padding-bottom: 15px;
   }
   #page-photographer #container-personal-informations #tagline-photographer {
-    font-size: 16px;
+    font-size: 12px;
     padding-bottom: 10px;
   }
   #page-photographer #container-personal-informations #all-tags {
@@ -546,6 +565,9 @@ body {
   }
   #modal-container #modal-content #form-container .formData-container textarea {
     margin-bottom: 10px;
+  }
+  #light-box-content {
+    height: 40%;
   }
 }
 /*# sourceMappingURL=style.css.map */

@@ -19,12 +19,14 @@
 
 <body>
 
-
+    <!--HEADER-->
     <header role="banner" id="main-header">
+        <!--logo-->
         <a href="index.html"><img src="Images/logo/logo.png" alt="FishEye Home Page" id="logo"></a>
     </header>
-    <!--Informations du photographe-->
+    <!--CONTENT-->
     <main id="page-photographer">
+        <!--Informations du photographe-->
         <header id="container-personal-informations">
 
         </header>
@@ -32,39 +34,42 @@
         <div id="order-medias-container">
             <label for="order-medias-select">Trier par</label>
             <select name="select" id="order-medias-select">
-            
                 <option value="popular" id="popular">Popularité</option>
-
                 <option value="date" id="date">Date</option>
                 <option value="title" id="title">Titre</option>
             </select>
         </div>
 
+        <!--MEDIAS-->
         <article id="container-medias">
 
         </article>
 
 
+        <!--LIGHTBOX-->
         <div id="light-box">
-            <div id="container-light-box">
+            <div id="light-box-content">
+                <div id="container-light-box">
+                    <!--Bouton pour fermer-->
+                    <button type="button" id="close-light-box-button" onclick="light_Box.close()"><i class="fas fa-times"></i></button>
+                    <div>
+                        <!--Bouton pour aller à gauche-->
+                        <button type="button" id="light-box-left-button"><i class="fas fa-chevron-left"></i></button>
+                    </div>
+                    <!--Image dedans lightboox -->
+                    <div id="light-box-image-container">
 
-                <button id="close-light-box-button" onclick="light_Box.close()"><i class="fas fa-times"></i></button>
-                <div>
+                        <img src="" alt="">
+                    </div>
+                    <div>
+                        <!--Bouton pour aller devant -->
+                        <button type="button" id="light-box-right-button"><i class="fas fa-chevron-right" ></i></button>
+                    </div>
 
-                    <button id="light-box-left-button"><i class="fas fa-chevron-left"></i></button>
                 </div>
-                <div id="light-box-image-container">
 
-                    <img src="" alt="">
-                </div>
-                <div>
-                    <button id="light-box-right-button"><i class="fas fa-chevron-right" ></i></button>
-                </div>
 
             </div>
-
-
-        </div>
 
         </div>
     </main>
@@ -72,7 +77,7 @@
     <aside id="aside">
 
     </aside>
-    <!--Formulaire-->
+    <!--FORMULAIRE/ MODAL-->
 
     <div id="modal-container">
 
@@ -80,8 +85,10 @@
 
     <!--Fichier JS-->
 
+    <!--fichier class Lightbox-->
     <script src="LightBox.js"></script>
     <script src="profil.js"></script>
+
 
 
 </body>
