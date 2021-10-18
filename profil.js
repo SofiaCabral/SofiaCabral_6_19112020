@@ -23,9 +23,6 @@ let photographerMedia;
 let photographerData;
 //balise image dedans la light box 
 
-
-
-
 // AUGMENTER LES LIKES
 function moreLike(i) {
     //ajouter un like
@@ -35,32 +32,31 @@ function moreLike(i) {
 }
 
 //REQUETE
-let requestURL = "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Front-End+V2/P5+Javascript+%26+Accessibility/FishEyeData.json";
-let request = new XMLHttpRequest();
-request.open("GET", requestURL);
-request.send();
+
 
 //au chargerment de la page
-request.addEventListener("load", () => {
-    data = JSON.parse(request.response); //transFormer json en js en stocker en data
-    if (request.status == 200 || request.status == 201) { //si tout se passe bien
-        //Récupearation de l'id dans l'url
-        const idURL = window.location.search;
-        //enlever le ? et garder que l'id
-        const onlyId = idURL.slice(1);
-        //Selectionner photographe en fonction de l'id du url
-        //find permet de recuperer le premier element
-        photographerData = data.photographers.find((dataOnePhotographer) => dataOnePhotographer.id == onlyId);
 
-        //prendre les tags du photographer
-        let tagsHTML = `<ul id="tags-container-photographers">`;
-        photographerData.tags.forEach(tag => {
-            tagsHTML += `<li class="all-tags">#${tag}</li>`
-        });
-        tagsHTML += `</ul>`;
+fetch('/data/data.json').then(response => {
+    return response.json();
+}).then(data => {
 
-        //AFFICHAGE DES COORDONNEES DU PHOTOGRAPHE
-        $containerPersonalInformations.innerHTML = `
+    //Récupearation de l'id dans l'url
+    const idURL = window.location.search;
+    //enlever le ? et garder que l'id
+    const onlyId = idURL.slice(1);
+    //Selectionner photographe en fonction de l'id du url
+    //find permet de recuperer le premier element
+    photographerData = data.photographers.find((dataOnePhotographer) => dataOnePhotographer.id == onlyId);
+
+    //prendre les tags du photographer
+    let tagsHTML = `<ul id="tags-container-photographers">`;
+    photographerData.tags.forEach(tag => {
+        tagsHTML += `<li class="all-tags">#${tag}</li>`
+    });
+    tagsHTML += `</ul>`;
+
+    //AFFICHAGE DES COORDONNEES DU PHOTOGRAPHE
+    $containerPersonalInformations.innerHTML = `
         <div id="photographer-description">
         <h1>${photographerData.name}</h1>
         <p id="city-country-photographer">${photographerData.city},${photographerData.country} </p>
@@ -77,31 +73,31 @@ request.addEventListener("load", () => {
    </div>     
         `
 
-        //trouver les id du photographer sur les media du json qui correspondondent  a l'id recupere dans l'url
-        //filter permet de recuperer plusieurs elemets 
-        photographerMedia = data.media.filter((dataOnephotographer) => dataOnephotographer.photographerId == onlyId);
+    //trouver les id du photographer sur les media du json qui correspondondent  a l'id recupere dans l'url
+    //filter permet de recuperer plusieurs elemets 
+    photographerMedia = data.media.filter((dataOnephotographer) => dataOnephotographer.photographerId == onlyId);
 
-        //pour stocker les lien vers les images
-        let imagePath;
-        //pour stocker le dossier de chaque photographe
-        let folderPhotographerName;
-        //ORDRE DES MEDIAS PAR DEFAUT 
-        photographerMedia.forEach((media, i_) => {
-            const i = i_;
-            //s'il c'est une image
-            if (media.image) {
-                //Garder que le premier prenom/premiere chaine de caractere, avant l'espace
-                folderPhotographerName = photographerData.name.split(" ")[0];
-                //liens vers l'image
-                imagePath = `images/${folderPhotographerName}/${media.image}`;
-            } else {
-                //si ce n'est pas une image, afficher le logo
-                imagePath = `images/logo/logo.png`;
-            }
-            //AFFICHAGE DES MEDIAS 
-            //light_Box.display(${i}) pour ouvir la lightbox
-            //moreLike(${i})) pour augmenter le numero de like
-            $containerMedias.innerHTML += `
+    //pour stocker les lien vers les images
+    let imagePath;
+    //pour stocker le dossier de chaque photographe
+    let folderPhotographerName;
+    //ORDRE DES MEDIAS PAR DEFAUT 
+    photographerMedia.forEach((media, i_) => {
+        const i = i_;
+        //s'il c'est une image
+        if (media.image) {
+            //Garder que le premier prenom/premiere chaine de caractere, avant l'espace
+            folderPhotographerName = photographerData.name.split(" ")[0];
+            //liens vers l'image
+            imagePath = `images/${folderPhotographerName}/${media.image}`;
+        } else {
+            //si ce n'est pas une image, afficher le logo
+            imagePath = `images/logo/logo.png`;
+        }
+        //AFFICHAGE DES MEDIAS 
+        //light_Box.display(${i}) pour ouvir la lightbox
+        //moreLike(${i})) pour augmenter le numero de like
+        $containerMedias.innerHTML += `
             <section class="medias-section">
 
                 <div class="image-medias-container">
@@ -120,52 +116,50 @@ request.addEventListener("load", () => {
                 </div>
             </section>
             `
+    });
+    //paragraphe qui contient les likes de chaque media
+    likeNumber = document.querySelectorAll(".like");
 
-
-        });
-        //paragraphe qui contient les likes de chaque media
-        likeNumber = document.querySelectorAll(".like");
-
-        //FILTRAGE DES MEDIAS /CHANGEMENT D ORDRE
-        //select 
-        let orderMediasSelect = document.querySelector("#order-medias-select");
-        orderMediasSelect.addEventListener("change", () => {
-            //vider le contenu
-            $containerMedias.innerHTML = "";
-            //ORDRE DES MEDIAS PAR POPULARITE
-            if (orderMediasSelect.selectedIndex == 0) {
-                //ORDRE POPULARITE plus de likes à moins
-                photographerMedia.sort(function(a, b) {
-                    return b.likes - a.likes;
-                });
+    //FILTRAGE DES MEDIAS /CHANGEMENT D ORDRE
+    //select 
+    let orderMediasSelect = document.querySelector("#order-medias-select");
+    orderMediasSelect.addEventListener("change", () => {
+        //vider le contenu
+        $containerMedias.innerHTML = "";
+        //ORDRE DES MEDIAS PAR POPULARITE
+        if (orderMediasSelect.selectedIndex == 0) {
+            //ORDRE POPULARITE plus de likes à moins
+            photographerMedia.sort(function(a, b) {
+                return b.likes - a.likes;
+            });
+        }
+        //ORDRE DES MEDIAS PAR DATE 
+        if (orderMediasSelect.selectedIndex == 1) {
+            //ORDRE DATE, plus recente à plus ancienne
+            photographerMedia.sort(function(a, b) {
+                return new Date(b.date) - new Date(a.date);
+            });
+        }
+        //ORDRE DES MEDIAS PAR TITRE
+        if (orderMediasSelect.selectedIndex == 2) {
+            //ORDRE ALPHABETIQUE 
+            photographerMedia.sort(function(a, b) {
+                return a.title.localeCompare(b.title);
+            });
+        }
+        //AFFICHAGE DES MEDIAS 
+        photographerMedia.forEach(media => {
+            //s'il c'est une image
+            if (media.image) {
+                //Garder que le premier prenom/premiere chaine de caractere, avant l'espace
+                folderPhotographerName = photographerData.name.split(" ")[0];
+                //liens vers l'image
+                imagePath = `images/${folderPhotographerName}/${media.image}`;
+            } else {
+                //si ce n'est pas une image, afficher le logo
+                imagePath = `images/logo/logo.png`;
             }
-            //ORDRE DES MEDIAS PAR DATE 
-            if (orderMediasSelect.selectedIndex == 1) {
-                //ORDRE DATE, plus recente à plus ancienne
-                photographerMedia.sort(function(a, b) {
-                    return new Date(b.date) - new Date(a.date);
-                });
-            }
-            //ORDRE DES MEDIAS PAR TITRE
-            if (orderMediasSelect.selectedIndex == 2) {
-                //ORDRE ALPHABETIQUE 
-                photographerMedia.sort(function(a, b) {
-                    return a.title.localeCompare(b.title);
-                });
-            }
-            //AFFICHAGE DES MEDIAS 
-            photographerMedia.forEach(media => {
-                //s'il c'est une image
-                if (media.image) {
-                    //Garder que le premier prenom/premiere chaine de caractere, avant l'espace
-                    folderPhotographerName = photographerData.name.split(" ")[0];
-                    //liens vers l'image
-                    imagePath = `images/${folderPhotographerName}/${media.image}`;
-                } else {
-                    //si ce n'est pas une image, afficher le logo
-                    imagePath = `images/logo/logo.png`;
-                }
-                $containerMedias.innerHTML += `
+            $containerMedias.innerHTML += `
                 <section class="medias-section">
     
                     <div class="image-medias-container">
@@ -185,31 +179,30 @@ request.addEventListener("load", () => {
                     </div>
                 </section>
                 `
-            });
         });
+    });
 
-        //NUMERO TOTAL DE LIKES 
-        //tableau qui contiendra tous les likes
-        let likesTable = [];
-        //parcourir le tableau des medias
-        photographerMedia.forEach(media => {
-            //ajouter les likes dans le tableau
-            likesTable.push(media.likes);
-        });
+    //NUMERO TOTAL DE LIKES 
+    //tableau qui contiendra tous les likes
+    let likesTable = [];
+    //parcourir le tableau des medias
+    photographerMedia.forEach(media => {
+        //ajouter les likes dans le tableau
+        likesTable.push(media.likes);
+    });
 
-        // tableau pour le total de likes
-        let totalLikes = 0;
-        //parcourir le tableau avec tous les likes 
-        likesTable.forEach((like) => {
-            //faire la somme de tous les likes du tableau 
-            //et la stocker
-            totalLikes = totalLikes + like;
+    // tableau pour le total de likes
+    let totalLikes = 0;
+    //parcourir le tableau avec tous les likes 
+    likesTable.forEach((like) => {
+        //faire la somme de tous les likes du tableau 
+        //et la stocker
+        totalLikes = totalLikes + like;
 
-        });
+    });
 
-
-        //ASIDE
-        $aside.innerHTML += `     
+    //ASIDE
+    $aside.innerHTML += `     
             <div id="container-aside-likes">
             <p>${totalLikes}</p>
 <div class="container-likes">
@@ -221,11 +214,11 @@ request.addEventListener("load", () => {
         </div>
 
         `
-            //MODAL
-            //conteneur modal 
-        const $modalContainer = document.querySelector("#modal-container");
-        //Affichage du contenu de la modal
-        $modalContainer.innerHTML += `
+        //MODAL
+        //conteneur modal 
+    const $modalContainer = document.querySelector("#modal-container");
+    //Affichage du contenu de la modal
+    $modalContainer.innerHTML += `
         <div role="form" id="contact-info" aria-label="Contact information">
             <div id="modal-content">
             <div id="form-container">
@@ -262,56 +255,52 @@ request.addEventListener("load", () => {
         </div>
         `
 
-        //BOUTON CONTACT
-        //button contactez moi
-        const buttonContact = document.querySelector("#button-contact");
-        //toute la modal
-        const modalContainer = document.querySelector("#modal-container");
-        //button pour fermer la modal
-        const closeModalButton = document.querySelector("#close-modal-button");
+    //BOUTON CONTACT
+    //button contactez moi
+    const buttonContact = document.querySelector("#button-contact");
+    //toute la modal
+    const modalContainer = document.querySelector("#modal-container");
+    //button pour fermer la modal
+    const closeModalButton = document.querySelector("#close-modal-button");
 
-        //Evenement sur le bouton contactez moi
-        buttonContact.addEventListener("click", openModal);
+    //Evenement sur le bouton contactez moi
+    buttonContact.addEventListener("click", openModal);
 
-        //ouvrir la modal
-        function openModal() {
-            modalContainer.style.display = "block";
-        }
-
-        //Evenement sur le bouton de fermer
-        closeModalButton.addEventListener("click", closeModal);
-        //fermer la modale
-        function closeModal() {
-            modalContainer.style.display = "none";
-        }
-        //PRENDRE VALEURS ET AFFICHER SUR LA CONSOLE
-        //form  
-        const form = document.querySelector(".form");
-        //prenom
-        const firstName = document.querySelector("#first-name");
-        //nom        
-        const last = document.querySelector("#last");
-        //email
-        const email = document.querySelector("#email");
-
-        form.addEventListener('submit', getValue);
-
-        function getValue(e) {
-            e.preventDefault();
-            //Affichage des values sur la console
-            console.log(firstName.value);
-            console.log(last.value);
-            console.log(email.value);
-        }
-
-        //LIGHTBOX
-        light_Box = new LightBox(photographerData, photographerMedia, $imageLightBox, lightBox, lightBoxRightButton, lightBoxLeftButton);
-
-
-    } else { //si non, afficher le message d'erreur 
-        console.log(request.status);
+    //ouvrir la modal
+    function openModal() {
+        modalContainer.style.display = "block";
     }
-})
-request.addEventListener("error", (e) => { //afficher l'erreur
-    console.log(e);
-})
+
+    //Evenement sur le bouton de fermer
+    closeModalButton.addEventListener("click", closeModal);
+    //fermer la modale
+    function closeModal() {
+        modalContainer.style.display = "none";
+    }
+    //PRENDRE VALEURS ET AFFICHER SUR LA CONSOLE
+    //form  
+    const form = document.querySelector(".form");
+    //prenom
+    const firstName = document.querySelector("#first-name");
+    //nom        
+    const last = document.querySelector("#last");
+    //email
+    const email = document.querySelector("#email");
+
+    form.addEventListener('submit', getValue);
+
+    function getValue(e) {
+        e.preventDefault();
+        //Affichage des values sur la console
+        console.log(firstName.value);
+        console.log(last.value);
+        console.log(email.value);
+    }
+
+    //LIGHTBOX
+    light_Box = new LightBox(photographerData, photographerMedia, $imageLightBox, lightBox, lightBoxRightButton, lightBoxLeftButton);
+
+}).catch(err => {
+    // Do something for an error here
+    console.log(err);
+});
