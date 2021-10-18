@@ -69,7 +69,7 @@ fetch('/data/data.json').then(response => {
     </div>
 
  <div id="container-picture-profil">
-    <img id="photo-profil" src="Images/PhotographersPictures/${photographerData.portrait}" alt="">
+    <img id="photo-profil" src="Images/PhotographersPictures/${photographerData.portrait}" alt="${photographerData.alt}">
    </div>     
         `
 
@@ -101,7 +101,7 @@ fetch('/data/data.json').then(response => {
             <section class="medias-section">
 
                 <div class="image-medias-container">
-                   <img class="img-medias" src="${imagePath}" alt="" onclick="light_Box.display(${i})">
+                   <img class="img-medias" src="${imagePath}" alt="${media.alt}" onclick="light_Box.display(${i})">
                 </div>
 
                 <div class="description-medias">
@@ -163,7 +163,7 @@ fetch('/data/data.json').then(response => {
                 <section class="medias-section">
     
                     <div class="image-medias-container">
-                      <img class="img-medias" src="${imagePath}" alt="">
+                      <img class="img-medias" src="${imagePath}" alt="${alt}">
 
                       
                     </div>

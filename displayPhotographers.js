@@ -7,7 +7,7 @@ fetch('/data/data.json').then(response => {
 }).then(data => {
     // VIGNETTES DES PHOTOGRAPHES
     //boucle qui prends les valeurs qui sont sur le json, parcours tous les photgraphers 
-    data.photographers.forEach(({ name, city, country, tagline, price, portrait, id, tags }) => {
+    data.photographers.forEach(({ name, city, country, tagline, price, portrait, id, tags, alt }) => {
         //TAGS DE CHAQUE PHOTOGRAPHE
         //creation d'une variable avec les tags de chaque photographe 
         let tagsHTML = `<ul class="tags-container">`;
@@ -27,7 +27,7 @@ fetch('/data/data.json').then(response => {
             <section class="photographers-list">
             <div class="photographers-pictures">
             <a href="./profil.html?${id}">
-            <img src="Images/PhotographersPictures/${portrait}" alt="">
+            <img src="Images/PhotographersPictures/${portrait}" alt="${alt}">
           
             </div>
            
