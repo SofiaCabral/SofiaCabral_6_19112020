@@ -55,7 +55,7 @@ request.addEventListener("load", () => {
         //prendre les tags du photographer
         let tagsHTML = `<ul id="tags-container-photographers">`;
         photographerData.tags.forEach(tag => {
-            tagsHTML += `<li id="all-tags">#${tag}</li>`
+            tagsHTML += `<li class="all-tags">#${tag}</li>`
         });
         tagsHTML += `</ul>`;
 
@@ -114,12 +114,14 @@ request.addEventListener("load", () => {
                     <div class="container-likes">
                     
                         <p class="like">${media.likes}</p>
-                        <button type="button" alt="coeur pour mettre un j'aime" class="like-button" onclick="moreLike(${i})"><i class="fas fa-heart medias-heart"></i></button>
+                        <button type="button" title="coeur pour mettre un j'aime" class="like-button" onclick="moreLike(${i})"><em class="fas fa-heart medias-heart"></em></button>
                     </div>
 
                 </div>
             </section>
             `
+
+
         });
         //paragraphe qui contient les likes de chaque media
         likeNumber = document.querySelectorAll(".like");
@@ -176,7 +178,7 @@ request.addEventListener("load", () => {
                         <p>${media.title}</p>
                         <div class="container-likes">
                             <p class="like">${media.likes}</p>
-                            <button type="button" class ="like-button" onclick="moreLike()"><i class="fas fa-heart medias-heart"></i></button>
+                            <button type="button" class ="like-button"  title="coeur pour mettre un j'aime"  onclick="moreLike()"><i class="fas fa-heart medias-heart"></i></button>
 
                         </div>
     
@@ -211,7 +213,7 @@ request.addEventListener("load", () => {
             <div id="container-aside-likes">
             <p>${totalLikes}</p>
 <div class="container-likes">
-            <i class="fas fa-heart"></i>
+            <em class="fas fa-heart"></em>
             </div>
         </div>
         <div id="container-aside-price">
@@ -224,36 +226,36 @@ request.addEventListener("load", () => {
         const $modalContainer = document.querySelector("#modal-container");
         //Affichage du contenu de la modal
         $modalContainer.innerHTML += `
+        <div role="form" id="contact-info" aria-label="Contact information">
             <div id="modal-content">
-         
             <div id="form-container">
                 <form class="form">
                   <div id="modal-container-title"> 
                     <h1>Contactez-moi <br /> ${photographerData.name} </h1>
-                    <button  type="button"id="close-modal-button"><i class="fas fa-times"></i></button>
+                    <button  type="button" id="close-modal-button"  title="bouton pour fermer le formulaire"><i class="fas fa-times"></i></button>
 
                      </div>
                     <div class="formData-container">
                         <label for="first-name">Prénom</label><br />
-                        <input class="input-text-style" type="text" id="first-name" name="firstName" /><br />
+                        <input class="input-text-style" type="text" id="first-name" aria-labelledby="first-name" name="firstName" title="champs pour ecrire le prenom" /><br />
 
                     </div>
                     <div class="formData-container">
                         <label for="last">Nom</label><br />
-                        <input class="input-text-style" type="text" id="last" name="last" /><br />
+                        <input class="input-text-style" type="text" id="last"  aria-labelledby="last"  name="last" title="champs pour ecrire le nom" /><br />
 
                     </div>
                     <div class="formData-container">
                         <label for="email">E-mail</label><br />
-                        <input class="input-text-style" type="email" id="email" name="email" /><br />
+                        <input class="input-text-style" type="email" id="email" aria-labelledby="email" name="email" title="champs pour ecrire l'e-mail" /><br />
 
                     </div>
                     <div class="formData-container">
                         <label for="message">Votre message</label><br />
-                        <textarea class="input-text-style" name="message" id="message"></textarea>
+                        <textarea class="input-text-style" name="message" id="message" aria-labelledby="message" title="champs pour ecrire le message"></textarea>
                     </div>
                     <div id="button-submit-container">
-                        <input id="button-submit" type="submit" value="Envoyer" />
+                        <input id="button-submit" type="submit" value="Envoyer" title="champs pour envoyer le formulaire"/>
                     </div>
                 </form>
             </div>

@@ -118,7 +118,7 @@
                                                }
                                                #tags-container-photographers {
                                                    display: flex;
-                                                   #all-tags {
+                                                   .all-tags {
                                                        text-transform: capitalize;
                                                        color: $first-primary-color;
                                                        border: 0.5px solid $second-secondary-color;
@@ -408,7 +408,7 @@
                                                        font-size: 12px;
                                                        padding-bottom: 10px;
                                                    }
-                                                   #all-tags {
+                                                   .all-tags {
                                                        font-size: 16px;
                                                    }
                                                    //button contactez moi

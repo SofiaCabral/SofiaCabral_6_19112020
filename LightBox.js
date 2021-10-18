@@ -20,6 +20,7 @@ class LightBox {
             const imagePath = `images/${this.folderPhotographerName}/${this.photographerMedia[i].image}`; // image media du photograher
             //mettre la src de l'image
             this.$imageLightBox.src = imagePath;
+
             //afficher la lightbox
             this.lightBox.style.display = 'block';
             //aller dans l'image dans la droite
@@ -50,7 +51,7 @@ class LightBox {
                 }
                 //mettre le lien de l'image
                 this.$imageLightBox.src = imagePath;
-            };
+            }
         }
         //QUAND ON CLIQUE ON VA VERS L IMAGE SUIVANTE JUSQU A LA DERNIERE 
     goToTheRight() {
